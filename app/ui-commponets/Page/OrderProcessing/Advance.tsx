@@ -17,7 +17,7 @@ const FEATURE_ITEMS: FeatureItem[] = [
 ];
 
 function getFeatureTitle(
-  columns: { items: { id: string; title: string }[] }[],
+  columns: readonly { items: readonly { id: string; title: string }[] }[],
   id: FeatureItem["id"]
 ) {
   for (const column of columns) {

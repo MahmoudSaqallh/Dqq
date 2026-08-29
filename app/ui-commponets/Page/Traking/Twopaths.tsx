@@ -35,7 +35,7 @@ type PathContent = {
   badge: string;
   title: string;
   description: string;
-  steps: { title: string; subtitle: string }[];
+  steps: readonly { title: string; subtitle: string }[];
 };
 
 function getPathPhaseOffset(pathIndex: 0 | 1) {

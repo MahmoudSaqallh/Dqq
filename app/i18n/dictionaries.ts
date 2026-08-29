@@ -549,6 +549,94 @@ export const dictionaries = {
         cta: "انضم إلى دقّق",
       },
     },
+    inventory: {
+      hero: {
+        badge: "المخزون",
+        title: "تابع كمياتك لحظة بلحظة",
+        subtitle:
+          "كل منتج بالمستودع له حالة واضحة مع تحديثات لحظية وتنبيهات ذكية",
+        cta: "اكتشف الميزات",
+      },
+      statuses: {
+        title: "5 حالات لكل منتج",
+        subtitle: "تابع كل منتج بحالة دقيقة توضّح موقعه الحالي وخطوته التالية",
+        center: {
+          id: "available",
+          title: "متاح للبيع",
+          description: "جاهز بالمستودع وقابل للحجز",
+        },
+        items: [
+          {
+            id: "shipped",
+            title: "مشحون",
+            description: "خرج من المستودع للعميل",
+          },
+          {
+            id: "damaged",
+            title: "تالف",
+            description: "مسجّل كتالف ومخصوم",
+          },
+          {
+            id: "picked",
+            title: "ملتقط",
+            description: "تم التقاطه وبانتظار الشحن",
+          },
+          {
+            id: "reserved",
+            title: "محجوز",
+            description: "محجوز لطلب بانتظار الالتقاط",
+          },
+        ],
+      },
+      features: {
+        title: "مشاكل المخزون حلّها نظام ذكي",
+        subtitle: "كل مشكلة كانت تسبب فوضى بالمخزون — النظام يتتبعها ويحلها خطوة بخطوة.",
+        problemLabel: "وش المشكلة؟",
+        solutionLabel: "كيف حليناها؟",
+        cases: [
+          {
+            id: "clear-stock",
+            number: "01",
+            label: "مخزون واضح",
+            problem: "ما تعرف الكمية الفعلية المتاحة",
+            solutionTitle: "مخزون واضح كل رقم له معنى",
+            solutionDescription:
+              "المتاح غير المحجوز غير المشحون. كل حالة لها رقم مستقل تشوف الصورة الكاملة لمخزونك بنظرة وحدة.",
+            image: "/مخزن/inventory-1.webp",
+          },
+          {
+            id: "stocktake",
+            number: "02",
+            label: "جرد منظّم",
+            problem: "جرد يدوي وما تعرف وين الفرق",
+            solutionTitle: "جرد منظّم بنتائج فورية",
+            solutionDescription:
+              "الموظف يعد والنظام يقارن تلقائيًا، يطلع لك الفرق بين الكمية بالنظام والكمية الفعلية مباشرة، ويسجّل التالف، وما يُنفَّذ شي إلا بعد اعتماد المدير.",
+            image: "/مخزن/inventory-2.webp",
+          },
+          {
+            id: "smart-alerts",
+            number: "03",
+            label: "تنبيهات ذكية",
+            problem: "المخزون ينفد بدون ما تدري",
+            solutionTitle: "تنبيهات ذكية قبل النفاد",
+            solutionDescription:
+              "حدّد حد أدنى لكل منتج، والنظام ينبّهك بإشعار وإيميل لما الكمية تقترب فوق 50% من الحد، وتحذير حرج تحت 10%.",
+            image: "/مخزن/inventory-3.webp",
+          },
+          {
+            id: "transaction-log",
+            number: "04",
+            label: "سجل المعاملات",
+            problem: "ما تعرف وين راحت الكمية",
+            solutionTitle: "سجل معاملات غير قابل للحذف",
+            solutionDescription:
+              "كل تغيير يُسجّل كمعاملة دائمة من 21 نوع معاملة من استلام وحجز والتقاط وشحن وإرجاع وتحويل. تقدر ترجع لأي لحظة وتعرف وين راحت وين كل قطعة.",
+            image: "/مخزن/inventory-4.webp",
+          },
+        ],
+      },
+    },
     solve: {
       idealSolution: "هو حلك المثالي",
       desc: "مع دقّق، كل طلب يطلع مضبوط، لتقليل الأخطاء وتوفير الوقت والتكاليف",
@@ -1272,6 +1360,94 @@ export const dictionaries = {
         title: "Your returns under control from day one.",
         subtitle: "Document, inspect, and restock — everything organized and linked to the app.",
         cta: "Join DQQ",
+      },
+    },
+    inventory: {
+      hero: {
+        badge: "Inventory",
+        title: "Track your stock, moment by moment",
+        subtitle:
+          "Every product in the warehouse has a clear status with real-time updates and smart alerts",
+        cta: "Explore Features",
+      },
+      statuses: {
+        title: "5 Statuses for Every Product",
+        subtitle: "Track every product with a precise status that shows its current position and next step",
+        center: {
+          id: "available",
+          title: "Available for Sale",
+          description: "Ready in the warehouse and open for reservation",
+        },
+        items: [
+          {
+            id: "shipped",
+            title: "Shipped",
+            description: "Left the warehouse to the customer",
+          },
+          {
+            id: "damaged",
+            title: "Damaged",
+            description: "Logged as damaged and deducted from stock",
+          },
+          {
+            id: "picked",
+            title: "Picked",
+            description: "Picked and awaiting shipment",
+          },
+          {
+            id: "reserved",
+            title: "Reserved",
+            description: "Reserved for an order awaiting pickup",
+          },
+        ],
+      },
+      features: {
+        title: "A Smart System Solves Every Inventory Problem",
+        subtitle: "Every issue used to cause chaos in your stock — the system tracks and solves it step by step.",
+        problemLabel: "What's the problem?",
+        solutionLabel: "How did we solve it?",
+        cases: [
+          {
+            id: "clear-stock",
+            number: "01",
+            label: "Clear Inventory",
+            problem: "You don't know the actual available quantity",
+            solutionTitle: "Clear inventory — every number has meaning",
+            solutionDescription:
+              "Available, not reserved, not shipped. Each status has its own independent number — see the complete picture of your inventory at a glance.",
+            image: "/مخزن/inventory-1.webp",
+          },
+          {
+            id: "stocktake",
+            number: "02",
+            label: "Organized Stocktake",
+            problem: "Manual counting and you don't know where the gap is",
+            solutionTitle: "Organized stocktake with instant results",
+            solutionDescription:
+              "The employee counts and the system automatically compares, instantly showing you the gap between the system quantity and the actual quantity, logs the damaged items, and nothing is executed except after manager approval.",
+            image: "/مخزن/inventory-2.webp",
+          },
+          {
+            id: "smart-alerts",
+            number: "03",
+            label: "Smart Alerts",
+            problem: "Stock runs out without you knowing",
+            solutionTitle: "Smart alerts before you run out",
+            solutionDescription:
+              "Set a minimum threshold for every product, and the system alerts you by notification and email once quantity nears 50% of the threshold, with a critical warning under 10%.",
+            image: "/مخزن/inventory-3.webp",
+          },
+          {
+            id: "transaction-log",
+            number: "04",
+            label: "Transaction Log",
+            problem: "You don't know where the quantity went",
+            solutionTitle: "A transaction log that can't be deleted",
+            solutionDescription:
+              "Every change is logged as a permanent transaction from 21 transaction types — receiving, reservation, picking, shipping, returns, and transfers. Go back to any moment and know exactly where every unit went.",
+            image: "/مخزن/inventory-4.webp",
+          },
+        ],
       },
     },
     solve: {

@@ -38,7 +38,7 @@ function RouteFlowNavPath({
   activeIndex,
   isVisible,
 }: {
-  tabs: RouteFlowTab[];
+  tabs: readonly RouteFlowTab[];
   navItemRefs: RefObject<Record<string, HTMLButtonElement | null>>;
   containerRef: RefObject<HTMLDivElement | null>;
   activeIndex: number;
@@ -196,7 +196,7 @@ function FlowVisualPanel({ image, title, compact }: { image: string; title: stri
 
 export default function RouteFlowSection() {
   const { t, isEn } = useLanguage();
-  const tabs = t.tracking.routeFlow.tabs as RouteFlowTab[];
+  const tabs = t.tracking.routeFlow.tabs as readonly RouteFlowTab[];
   const [activeId, setActiveId] = useState(tabs[0]?.id ?? "");
   const [indicatorTop, setIndicatorTop] = useState(0);
   const [navPathVisible, setNavPathVisible] = useState(false);

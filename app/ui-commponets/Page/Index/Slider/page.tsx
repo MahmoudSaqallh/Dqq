@@ -49,7 +49,7 @@ export default function Slider() {
   useEffect(() => {
     const swiper = swiperRef.current;
     if (!swiper) return;
-    swiper.changeDirection(dir);
+    swiper.changeLanguageDirection(dir);
   }, [dir]);
 
   return (

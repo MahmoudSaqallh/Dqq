@@ -18,7 +18,7 @@ type CaseItem = {
 export default function FeaturesSection() {
   const { t, isEn } = useLanguage();
   const content = t.sites.features;
-  const cases = content.cases as CaseItem[];
+  const cases = content.cases as readonly CaseItem[];
 
   const [activeId, setActiveId] = useState(cases[0]?.id ?? "");
   const [indicatorTop, setIndicatorTop] = useState(0);

@@ -49,6 +49,7 @@ const FEATURE_LINKS: Record<string, string> = {
   locations: "/sites",
   printing: "/printing",
   returns: "/returns",
+  stock: "/inventory",
 };
 const FEATURE_PATHS = Array.from(new Set(Object.values(FEATURE_LINKS)));
 
