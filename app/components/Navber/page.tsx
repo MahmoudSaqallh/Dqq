@@ -46,6 +46,9 @@ const MEGA_MENU_ICONS: Record<string, LucideIcon> = {
 const FEATURE_LINKS: Record<string, string> = {
   orderPrep: "/order-processing",
   routes: "/traking",
+  locations: "/sites",
+  printing: "/printing",
+  returns: "/returns",
 };
 const FEATURE_PATHS = Array.from(new Set(Object.values(FEATURE_LINKS)));
 
@@ -247,12 +250,12 @@ export default function Navber() {
               className={`mega-menu-panel ${isMegaOpen ? "mega-menu-panel--open" : "mega-menu-panel--closed"}`}
             >
               <div key={megaAnimKey} className="site-container mega-menu-grid grid grid-cols-4 gap-x-8 py-9">
-                <div className="mega-menu-intro px-1">
+                <div className="mega-menu-intro px-1 text-center">
                   <h3 className="mb-4 text-[1.35rem] font-semibold leading-snug text-[#22303e]">
                     {megaMenu.intro.titleBefore}
                     <AnmtionTow inline withBang={false} className="brand-letters-stage--mega" />
                   </h3>
-                  <p className="mega-menu-desc max-w-[15rem] text-[0.92rem] leading-[1.75] text-[#6f7f77]">
+                  <p className="mega-menu-desc mx-auto max-w-[15rem] text-[0.92rem] leading-[1.75] text-[#6f7f77]">
                     {megaMenu.intro.description}
                   </p>
                 </div>
@@ -308,12 +311,12 @@ export default function Navber() {
             <ArrowLeft className="relative z-[1] h-4 w-4" />
           </button>
 
-          <button
+          <Link
+            href="/login"
             className="flex items-center gap-2 rounded-[0.7rem] border border-transparent bg-[#f3f7f4] px-4 py-[0.55rem] text-[0.95rem] text-[#335445]"
-            type="button"
           >
             {nav.login}
-          </button>
+          </Link>
 
           <button
             className="grid h-9 min-w-18 place-items-center rounded-full border border-[#dce8df] bg-white px-3 text-[0.9rem]"
@@ -386,12 +389,13 @@ export default function Navber() {
               <span className="pointer-events-none absolute inset-y-0 -left-14 w-10 -skew-x-12 bg-white/35 blur-[1px] join-btn-shine" />
               <span className="relative z-[1]">{nav.join}</span>
             </button>
-            <button
-              className="min-h-12 w-full rounded-[0.8rem] border border-transparent bg-[#f3f7f4] px-4 py-[0.55rem] text-[1.05rem] text-[#335445]"
-              type="button"
+            <Link
+              href="/login"
+              className="flex min-h-12 w-full items-center justify-center rounded-[0.8rem] border border-transparent bg-[#f3f7f4] px-4 py-[0.55rem] text-[1.05rem] text-[#335445]"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               {nav.login}
-            </button>
+            </Link>
             <button
               className="min-h-12 w-full rounded-[0.8rem] border border-transparent bg-[#f3f7f4] px-4 py-[0.55rem] text-[1.05rem] text-[#335445]"
               type="button"

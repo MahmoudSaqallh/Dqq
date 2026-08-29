@@ -12,7 +12,7 @@ type FeatureItem = {
 
 const FEATURE_ITEMS: FeatureItem[] = [
   { id: "orderPrep", href: "/order-processing", icon: PackageCheck },
-  { id: "printing", href: "#", icon: Printer },
+  { id: "printing", href: "/printing", icon: Printer },
 ];
 
 function getFeatureTitle(
@@ -34,7 +34,7 @@ export default function Advance() {
     <section className="pb-14 pt-2 md:pb-16">
       <div className="site-container">
         <div className="flex flex-wrap items-center gap-3 rounded-[1.75rem] bg-gradient-to-l from-[#e8f7ef] via-[#f3fbf7]/90 to-transparent px-5 py-5 md:gap-4 md:rounded-[2rem] md:px-8 md:py-6">
-          <h3 className="font-madani-semibold text-[1.02rem] text-[#24a259] md:text-[1.08rem]">
+          <h3 className="font-madani-semibold text-[1.02rem] text-primary md:text-[1.08rem]">
             {t.advance.relatedFeatures}
           </h3>
 
@@ -42,7 +42,7 @@ export default function Advance() {
             <Link
               key={id}
               href={href}
-              className="inline-flex items-center gap-2 rounded-full border border-[#24a259] bg-[#f8fffb]/90 px-4 py-2 font-madani-semibold text-[0.9rem] text-[#24a259] transition-colors duration-200 hover:bg-[#eefaf2] md:px-5 md:py-2.5 md:text-[0.94rem]"
+              className="inline-flex items-center gap-2 rounded-full border border-primary bg-[#f8fffb]/90 px-4 py-2 font-madani-semibold text-[0.9rem] text-[#24a259] transition-colors duration-200 hover:bg-[#eefaf2] md:px-5 md:py-2.5 md:text-[0.94rem]"
             >
               <Icon className="h-[18px] w-[18px] shrink-0" strokeWidth={1.75} aria-hidden />
               <span>{getFeatureTitle(t.nav.megaMenu.columns, id)}</span>

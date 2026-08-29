@@ -24,30 +24,30 @@ export default function Hero() {
 
       <div aria-hidden className="tracking-hero-grid" />
 
-      <div className="site-container relative z-[1] flex min-h-[86vh] flex-col items-center justify-between pt-20 pb-0 max-md:min-h-[78vh] max-md:pt-14">
+      <div className="site-container relative z-[1] flex min-h-[86vh] flex-col items-center justify-between pt-20 pb-0 max-md:min-h-[78vh] max-md:pt-12 max-sm:pt-10">
         <div className="mx-auto flex w-full max-w-[760px] flex-col items-center text-center">
-          <div className="min-h-[120px] max-md:min-h-[104px] max-sm:min-h-[92px]">
+          <div className="min-h-[120px] max-md:min-h-[112px] max-sm:min-h-[100px]">
             <h1 className="text-4xl font-bold leading-[1.28] text-[#22303e] max-md:text-3xl max-sm:text-[1.65rem]">
               <AnimatedText />
-              <AnmtionTow />
+              <AnmtionTow className="mt-3 max-md:mt-4 max-sm:mt-5" />
             </h1>
           </div>
 
-          <p className="mt-6 text-xl leading-9 text-[#22303e]/80 max-md:text-lg max-md:leading-8 max-sm:text-base max-sm:leading-7">
+          <p className="mt-6 text-xl leading-9 text-[#22303e]/80 max-md:mt-5 max-md:text-lg max-md:leading-8 max-sm:mt-4 max-sm:text-base max-sm:leading-7">
             {t.hero.desc}
           </p>
 
           <button
             type="button"
-            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#24a259] px-7 py-3 text-lg font-medium text-white transition hover:bg-[#1f8d4d]"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#24a259] px-7 py-3 text-lg font-medium text-white transition hover:bg-[#1f8d4d] max-md:mt-5 max-sm:mt-4"
           >
             {t.hero.join}
             {isEn ? <ArrowRight size={18} /> : <ArrowLeft size={18} />}
           </button>
         </div>
 
-        <div className="relative mt-8 flex w-full flex-col items-center justify-center overflow-visible">
-          <div className="pointer-events-none z-[3] mb-3 flex w-full max-w-[min(100%,580px)] items-center justify-between gap-2 px-1 md:absolute md:top-3 md:left-1/2 md:mb-0 md:h-[28%] md:w-[35%] md:max-w-none md:-translate-x-1/2 md:justify-stretch">
+        <div className="relative mt-8 flex w-full flex-col items-center justify-center overflow-visible max-md:mt-12 max-sm:mt-14">
+          <div className="pointer-events-none z-[3] mb-1 flex w-full max-w-[min(100%,580px)] items-center justify-between gap-2 px-1 max-md:mb-0 max-md:mt-2 max-md:overflow-hidden max-md:pt-2 md:absolute md:top-3 md:left-1/2 md:mb-0 md:mt-0 md:h-[28%] md:w-[35%] md:max-w-none md:overflow-visible md:pt-0 md:-translate-x-1/2 md:justify-stretch">
             <div className="contents md:block md:relative md:h-full md:w-full">
               <Image
                 src="https://dqq.ai/images/image-hero-1.webp"
@@ -86,7 +86,7 @@ export default function Hero() {
             width={1120}
             height={600}
             priority
-            className="relative z-[2] h-auto w-[min(100%,1320px)] object-contain pt-10 max-md:w-[min(118%,760px)]"
+            className="h-125  w-[100%] lg:h-full object-cover lg:w-full"
           />
         </div>
       </div>
