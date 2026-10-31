@@ -1,11 +1,11 @@
 "use client";
 
 import {
-  ArrowLeft,
   Boxes,
   ChevronDown,
   Clock3,
   Link2,
+  LogIn,
   MapPin,
   Package,
   PackageCheck,
@@ -20,6 +20,7 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -96,6 +97,8 @@ export default function Navber() {
   const [isMobileFeaturesOpen, setIsMobileFeaturesOpen] = useState(false);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [activeSection, setActiveSection] = useState<string>("home");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const isHome = pathname === "/";
 
   const sectionHref = (hash: string) => (pathname === "/" ? hash : `/${hash}`);
 
@@ -180,14 +183,32 @@ export default function Navber() {
     };
   }, [locale, pathname]);
 
+  // Transparent over the top of the page; white with a border once scrolled.
+  useEffect(() => {
+    const updateScrolled = () => setIsScrolled(window.scrollY > 8);
+    const rafId = window.requestAnimationFrame(updateScrolled);
+    window.addEventListener("scroll", updateScrolled, { passive: true });
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", updateScrolled);
+    };
+  }, []);
+
+  const isHeaderSolid = isScrolled || isMobileMenuOpen;
+
   const navLinkClass = (sectionId: string) =>
     `inline-flex items-center gap-1 text-base font-medium leading-none no-underline transition-colors ${
       activeSection === sectionId ? "text-[#24a259]" : "text-[#22303e] hover:text-[#24a259]"
     }`;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#eef3ef] bg-white">
-      <div className="site-container flex min-h-[74px] items-center justify-between gap-5 max-[1140px]:relative max-[1140px]:min-h-[68px] max-[1140px]:justify-start">
+    <header
+      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
+        isHeaderSolid ? "border-[#edf2ee] bg-white" : "border-transparent bg-transparent"
+      } ${isHome ? "-mb-[70px] max-[1140px]:-mb-[69px]" : ""}`}
+    >
+      <div className="site-container flex min-h-[69px] items-center justify-between gap-5 max-[1140px]:relative max-[1140px]:min-h-[68px] max-[1140px]:justify-start">
         <button
           className="hidden h-[2.2rem] w-[2.2rem] place-items-center rounded-[0.55rem] border-0 bg-[#eef6f0] text-[1.1rem] text-[#24a259] max-[1140px]:absolute max-[1140px]:left-[0.35rem] max-[1140px]:top-1/2 max-[1140px]:z-[2] max-[1140px]:inline-grid max-[1140px]:-translate-y-1/2"
           type="button"
@@ -202,12 +223,12 @@ export default function Navber() {
           <img
             src="https://dqq.ai/images/nav-logo.webp"
             alt="دقّق"
-            className="h-auto w-28 max-[1140px]:w-[120px] max-[1140px]:max-w-[42vw]"
+            className="h-auto w-[102.5px] max-[1140px]:w-[120px] max-[1140px]:max-w-[42vw]"
           />
         </div>
 
         <nav
-          className={`flex items-center gap-6 max-[1140px]:hidden ${isEn ? "[direction:ltr]" : ""}`}
+          className={`flex items-center gap-8 max-[1140px]:hidden ${isEn ? "[direction:ltr]" : ""}`}
           aria-label="Main navigation"
         >
           <Link href={sectionHref("#home")} className={navLinkClass("home")}>
@@ -225,7 +246,7 @@ export default function Navber() {
             onBlurCapture={closeMegaWithDelay}
           >
             <button
-              className={`inline-flex items-center gap-1 border-0 bg-transparent p-0 text-base font-medium leading-none ${
+              className={`-mx-2 inline-flex items-center gap-1 border-0 bg-transparent px-2 py-0 text-base font-medium leading-none ${
                 isFeaturesActive ? "text-[#24a259]" : "text-[#22303e] hover:text-[#24a259]"
               }`}
               type="button"
@@ -302,32 +323,51 @@ export default function Navber() {
           </Link>
         </nav>
 
-        <div className={`flex items-center gap-3 max-[1140px]:hidden ${isEn ? "[direction:ltr]" : ""}`}>
+        <div className={`flex items-center gap-4 max-[1140px]:hidden ${isEn ? "[direction:ltr]" : ""}`}>
           <button
-            className="relative flex items-center gap-2 overflow-hidden rounded-[0.7rem] border border-transparent bg-[#24a259] px-4 py-[0.55rem] text-[0.95rem] text-white"
+            className="relative flex h-[42px] items-center gap-2 overflow-hidden rounded-[10px] border border-[#24a259] bg-[#24a259] px-4 text-[0.95rem] text-white"
             type="button"
           >
             <span className="pointer-events-none absolute inset-y-0 -left-14 w-10 -skew-x-12 bg-white/35 blur-[1px] join-btn-shine" />
             <span className="relative z-[1]">{nav.join}</span>
-            <ArrowLeft className="relative z-[1] h-4 w-4" />
+            <span className="relative z-[1] grid size-6 place-items-center">
+              <Image
+                src="/hero/arrow-left.svg"
+                alt=""
+                width={17.5}
+                height={11.5}
+                unoptimized
+                className={isEn ? "-scale-x-100" : undefined}
+              />
+            </span>
           </button>
 
           <Link
             href="/login"
-            className="flex items-center gap-2 rounded-[0.7rem] border border-transparent bg-[#f3f7f4] px-4 py-[0.55rem] text-[0.95rem] text-[#335445]"
+            className="flex h-[42px] items-center gap-1.5 rounded-[10px] border border-transparent bg-[#e9f6ee] px-4 text-[0.95rem] text-[#24a259]"
           >
             {nav.login}
+            <LogIn className={`h-3.5 w-3.5 ${isEn ? "" : "-scale-x-100"}`} aria-hidden />
           </Link>
-
-          <button
-            className="grid h-9 min-w-18 place-items-center rounded-full border border-[#dce8df] bg-white px-3 text-[0.9rem]"
-            type="button"
-            onClick={toggleLocale}
-          >
-            {nav.switchLang}
-          </button>
         </div>
       </div>
+
+      {/* Figma: language switch sits on its own at the far left edge of the bar */}
+      <button
+        className="absolute top-1/2 left-[10px] grid h-[39px] w-[66px] -translate-y-1/2 place-items-center rounded-[10px] border border-transparent text-[0.9rem] text-[#22303e] transition-colors hover:bg-[#f3f7f4] max-[1140px]:hidden"
+        type="button"
+        onClick={toggleLocale}
+        aria-label={nav.switchLang}
+      >
+        <Image
+          src={isEn ? "/ar.svg" : "/en.svg"}
+          alt=""
+          width={isEn ? 40 : 32}
+          height={isEn ? 31 : 25}
+          unoptimized
+          className="h-5 w-auto"
+        />
+      </button>
 
       <div
         className={`absolute top-[calc(100%+1px)] right-0 left-0 z-[70] border-t border-[#e6f0e9] bg-white shadow-[0_14px_28px_rgba(12,24,18,0.08)] transition-all duration-200 min-[1141px]:hidden ${isMobileMenuOpen ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-2 opacity-0"}`}
@@ -398,13 +438,21 @@ export default function Navber() {
               {nav.login}
             </Link>
             <button
-              className="min-h-12 w-full rounded-[0.8rem] border border-transparent bg-[#f3f7f4] px-4 py-[0.55rem] text-[1.05rem] text-[#335445]"
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-[0.8rem] border border-transparent bg-[#f3f7f4] px-4 py-[0.55rem] text-[1.05rem] text-[#335445]"
               type="button"
               onClick={() => {
                 toggleLocale();
                 setIsMobileMenuOpen(false);
               }}
             >
+              <Image
+                src={isEn ? "/ar.svg" : "/en.svg"}
+                alt=""
+                width={isEn ? 40 : 32}
+                height={isEn ? 31 : 25}
+                unoptimized
+                className="h-5 w-auto"
+              />
               {nav.switchLang}
             </button>
           </div>

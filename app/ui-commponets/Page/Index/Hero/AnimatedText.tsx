@@ -92,7 +92,7 @@ export default function AnimatedText() {
 
   return (
     <span className="block" dir={dir}>
-      <span ref={typewriterRef} className="inline text-[#22303e]" dir={dir} />
+      <span ref={typewriterRef} className="inline" dir={dir} />
     </span>
   );
 }
