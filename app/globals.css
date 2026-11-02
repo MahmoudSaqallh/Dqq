@@ -1981,21 +1981,22 @@ a {
 }
 
 .brand-letters-stage--mega {
-  font-size: 1.35rem;
+  font-size: 18px;
   vertical-align: baseline;
 }
 
-/* Mega menu */
+/* Mega menu — Figma "Mega Menu (Features)": intro 270px, divider, 3 equal columns */
 .mega-menu-panel {
   position: absolute;
   right: 0;
   left: 0;
   top: 100%;
   width: 100%;
-  border-top: 1px solid #edf4ef;
-  border-bottom: 1px solid #edf4ef;
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+  border-radius: 0 0 16px 16px;
   background: #fff;
-  box-shadow: 0 16px 34px rgba(16, 24, 20, 0.07);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
   transition:
     opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
@@ -2040,6 +2041,165 @@ a {
   }
 }
 
+.mega-menu-inner {
+  display: flex;
+  gap: 32px;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding: 32px clamp(20px, 4.17vw, 60px);
+}
+
+.mega-menu-intro {
+  display: flex;
+  flex: 0 0 270px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding-inline-end: 24px;
+}
+
+.mega-menu-intro__title {
+  margin: 0;
+  color: #22303e;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.mega-menu-desc {
+  margin: 0;
+  color: #676767;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.mega-menu-divider {
+  flex: 0 0 1px;
+  align-self: stretch;
+  background: rgba(217, 217, 217, 0.25);
+}
+
+.mega-menu-columns {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  min-width: 0;
+  padding-inline-start: 24px;
+}
+
+.mega-menu-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.mega-menu-column__title {
+  margin: 0;
+  color: #24a259;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+/* Figma "Mega Menu Item": on hover the row tints green, gains a soft shadow and shifts
+   4px away from the reading start; name + icon turn green and the icon grows. 250ms ease. */
+.mega-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  color: #22303e;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.mega-item__icon {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  background-color: #676767;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.mega-item__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.mega-item__name {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 19.5px;
+}
+
+.mega-item__desc {
+  color: rgba(34, 48, 62, 0.5);
+  font-size: 11px;
+  line-height: 16.5px;
+}
+
+.mega-item:hover,
+.mega-item:focus-visible {
+  background-color: rgba(36, 162, 89, 0.05);
+  box-shadow: 0 2px 12px rgba(36, 162, 89, 0.08);
+  color: #24a259;
+  transform: translateX(-4px);
+}
+
+[dir="ltr"] .mega-item:hover,
+[dir="ltr"] .mega-item:focus-visible {
+  transform: translateX(4px);
+}
+
+.mega-item:hover .mega-item__icon,
+.mega-item:focus-visible .mega-item__icon {
+  background-color: #24a259;
+  transform: scale(1.1);
+}
+
+/* The page you're already on */
+.mega-item--current {
+  background-color: rgba(36, 162, 89, 0.08);
+  color: #24a259;
+  opacity: 0.8;
+}
+
+.mega-item--current .mega-item__icon {
+  background-color: #24a259;
+}
+
+/* Comfortable sizes in the phone/tablet menu */
+@media (max-width: 1140px) {
+  .mega-item__name {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .mega-item__desc {
+    font-size: 13px;
+    line-height: 19px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mega-menu-panel {
     transition: opacity 0.2s ease !important;
@@ -2057,6 +2217,70 @@ a {
     opacity: 1 !important;
     transform: none !important;
   }
+}
+
+/* Order preparation hero: the Figma greens flow right → left in a seamless loop.
+   The tile is twice the hero width and starts/ends on the same color, so shifting
+   it by one full tile (0% → 200% at background-size 200%) loops with no seam.
+   A soft white veil keeps the middle light, like the Figma gradient. */
+.order-prep-hero-gradient {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 45%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(90deg, #bfe7d0 0%, #d4f0e0 20%, #ffffff 45%, #e6f5ec 70%, #bfe7d0 100%);
+  background-size: 100% 100%, 200% 100%;
+  animation: orderPrepGradientFlow 14s linear infinite;
+}
+
+@keyframes orderPrepGradientFlow {
+  from { background-position: 0 0, 0% 0; }
+  to { background-position: 0 0, 200% 0; }
+}
+
+/* Order preparation, employee app: the dashed ring turns (the disc is concentric, so
+   only the dashes appear to move) while the phone floats gently up and down */
+.order-prep-circle-spin {
+  animation: orderPrepCircleSpin 40s linear infinite;
+}
+
+@keyframes orderPrepCircleSpin {
+  to { transform: rotate(360deg); }
+}
+
+.order-prep-phone-float {
+  animation: orderPrepPhoneFloat 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes orderPrepPhoneFloat {
+  from { transform: translateY(0); }
+  to { transform: translateY(-14px); }
+}
+
+/* Order preparation CTA: the light streak (Figma's banner gradient) slides right → left.
+   The gradient repeats every 800px along its 161deg axis, which is 800 / sin(161deg) ≈ 2457px
+   horizontally, so sliding exactly that far lands on an identical frame: no jump, no gap. */
+.order-prep-cta-shine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  width: calc(100% + 2457px);
+  background: repeating-linear-gradient(
+    161deg,
+    #1a9b4e 0,
+    #1a9b4e 114px,
+    #24a45a 257px,
+    #1bfb7a 400px,
+    #24a45a 543px,
+    #1a9b4e 686px,
+    #1a9b4e 800px
+  );
+  animation: orderPrepCtaShine 12s linear infinite;
+  will-change: transform;
+}
+
+@keyframes orderPrepCtaShine {
+  to { transform: translateX(-2457px); }
 }
 
 /* Home hero — Figma "Hero Animation – Prototype" (1920 frame, values scale down with vw) */
@@ -3124,179 +3348,157 @@ html[data-loaded] .hero-icon--4 { animation: heroIcon4 4s linear 4.6s infinite b
   filter: contrast(1.4) saturate(1.5) brightness(1.12);
 }
 
-.returns-hero-gradient {
-  overflow: hidden;
-}
-
-.returns-hero-gradient-light {
-  background-color: #d3ebdc;
-  opacity: 1;
-  animation: returnsHeroLightFade 8s ease-in-out infinite;
-}
-
-.returns-hero-gradient-dark {
-  background-color: #b9dcc8;
-  opacity: 0;
-  animation: returnsHeroDarkFade 8s ease-in-out infinite;
-}
-
-@keyframes returnsHeroLightFade {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.55;
-  }
-}
-
-@keyframes returnsHeroDarkFade {
-  0%,
-  100% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 0.7;
-  }
-}
-
-.returns-hero-bg {
-  z-index: 0;
-  background-image: url("/join-us-bg.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  mix-blend-mode: multiply;
-  opacity: 0.7;
-  pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse 95% 88% at 50% 45%, #000 0%, rgba(0, 0, 0, 0.65) 58%, transparent 100%);
-  mask-image: radial-gradient(ellipse 95% 88% at 50% 45%, #000 0%, rgba(0, 0, 0, 0.65) 58%, transparent 100%);
-  animation: returnsHeroBgDrift 10s ease-in-out infinite;
-}
-
-@keyframes returnsHeroBgDrift {
-  0%,
-  100% {
-    background-position: 46% 40%;
-  }
-
-  50% {
-    background-position: 54% 48%;
-  }
-}
-
-.returns-dash-line {
-  animation: returnsDashFlow 1.15s linear infinite;
-}
-
-@keyframes returnsDashFlow {
-  to {
-    stroke-dashoffset: -17;
-  }
-}
-
 .returns-flow-arrow {
   filter: drop-shadow(0 2px 6px rgba(36, 162, 89, 0.35));
 }
 
-.returns-connector-arrow {
-  animation: returnsConnectorArrowPulse 1.1s ease-in-out infinite;
-  transform-box: fill-box;
-  transform-origin: center;
+/* Returns page: boxes and float states from Figma (components "Returns/Hex Icon", "Returns/Float Card") */
+.returns-journey-box {
+  background:
+    radial-gradient(49.5% 56.6% at 70% 80%, rgba(163, 223, 186, 0.25), rgba(163, 223, 186, 0)),
+    radial-gradient(49.5% 56.6% at 30% 20%, rgba(163, 223, 186, 0.3), rgba(163, 223, 186, 0)),
+    linear-gradient(180deg, #f1faf4 0%, #fff 87.05%);
 }
 
-@keyframes returnsConnectorArrowPulse {
+.returns-coming-soon-box {
+  background:
+    radial-gradient(49.5% 53.2% at 75% 70%, rgba(198, 234, 213, 0.35), rgba(198, 234, 213, 0)),
+    radial-gradient(49.5% 53.2% at 25% 30%, rgba(198, 234, 213, 0.4), rgba(198, 234, 213, 0)),
+    linear-gradient(90deg, #f3faf6 0%, #e8f6ee 100%);
+}
+
+.returns-hex-float {
+  animation: returnsHexFloat 3s ease-in-out infinite;
+}
+
+@keyframes returnsHexFloat {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.returns-float-card {
+  animation: returnsCardFloat 3.6s ease-in-out infinite;
+}
+
+@keyframes returnsCardFloat {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .returns-hex-float,
+  .returns-float-card {
+    animation: none;
+  }
+}
+
+/* Delivery page: bubbles around the phone in "طلبات كثيرة" */
+.courier-bubble-float {
+  animation: courierBubbleFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes courierBubbleFloat {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .courier-bubble-float {
+    animation: none;
+  }
+}
+
+/* Delivery page: "تابع كل محاولة" rows lift in turn (the other illustrations animate inside their own SVG files) */
+.courier-attempt-row {
+  animation: courierAttemptRow 4.5s ease-in-out infinite;
+}
+
+@keyframes courierAttemptRow {
   0%,
+  30%,
   100% {
     transform: translateY(0);
-    opacity: 0.55;
   }
 
-  50% {
-    transform: translateY(5px);
+  15% {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .courier-attempt-row {
+    animation: none;
+  }
+}
+
+/* Delivery page: solution card corners, from Figma "Delivery/Corner Accents (3s loop)" */
+.courier-card-corner {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  border: 0 solid #24a259;
+}
+
+.courier-card-corner--start {
+  top: -1px;
+  right: -1px;
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-top-right-radius: 25px;
+  animation: courierCornerStart 3s ease-in-out infinite;
+}
+
+.courier-card-corner--end {
+  bottom: -1px;
+  left: -1px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-bottom-left-radius: 25px;
+  animation: courierCornerEnd 3s ease-in-out infinite;
+}
+
+@keyframes courierCornerStart {
+  25%,
+  60% {
+    width: 25px;
+    height: 25px;
+    opacity: 1;
+  }
+
+  75% {
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+}
+
+@keyframes courierCornerEnd {
+  0%,
+  30% {
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  50%,
+  85% {
+    width: 25px;
+    height: 25px;
     opacity: 1;
   }
 }
 
-.returns-card-float-top {
-  animation: returnsCardSeqTop 5.4s ease-in-out infinite;
-}
-
-.returns-card-float-mid {
-  animation: returnsCardSeqMid 5.4s ease-in-out infinite;
-}
-
-.returns-card-float-bottom {
-  animation: returnsCardSeqBottom 5.4s ease-in-out infinite;
-}
-
-@keyframes returnsCardSeqTop {
-  0% {
-    transform: translateY(-12px);
-  }
-
-  8% {
-    transform: translateY(0);
-  }
-
-  14% {
-    transform: translateY(0);
-  }
-
-  20% {
-    transform: translateY(-12px);
-  }
-
-  100% {
-    transform: translateY(-12px);
-  }
-}
-
-@keyframes returnsCardSeqMid {
-  0%,
-  28% {
-    transform: translateY(0);
-  }
-
-  36% {
-    transform: translateY(8px);
-  }
-
-  42% {
-    transform: translateY(8px);
-  }
-
-  48% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes returnsCardSeqBottom {
-  0%,
-  68% {
-    transform: translateY(-12px);
-  }
-
-  76% {
-    transform: translateY(0);
-  }
-
-  82% {
-    transform: translateY(0);
-  }
-
-  88% {
-    transform: translateY(-12px);
-  }
-
-  100% {
-    transform: translateY(-12px);
+@media (prefers-reduced-motion: reduce) {
+  .courier-card-corner--start,
+  .courier-card-corner--end {
+    width: 25px;
+    height: 25px;
+    opacity: 1;
+    animation: none;
   }
 }
 

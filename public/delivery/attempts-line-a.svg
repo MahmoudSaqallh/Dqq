@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="180.297" height="180.297" viewBox="0 0 180.297 180.297" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+#Vector { transform-box: fill-box; transform-origin: center; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+#Vector { animation: halo 4.5s ease-in-out infinite; }
+@keyframes halo { 50% { transform: scale(1.04); } }
+</style>
+<path id="Vector" d="M90.1483 180.297C139.936 180.297 180.297 139.936 180.297 90.1483C180.297 40.3608 139.936 0 90.1483 0C40.3608 0 0 40.3608 0 90.1483C0 139.936 40.3608 180.297 90.1483 180.297Z" fill="#F6FAF7"/>
+</svg>

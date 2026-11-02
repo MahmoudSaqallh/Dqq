@@ -9,18 +9,16 @@ export default function HierarchySection() {
   const content = t.sites.hierarchy;
 
   return (
-    <section id="sites-features" className="scroll-mt-24 bg-white py-16 md:py-20">
-      <div className="site-container">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-madani-semibold text-[clamp(1.65rem,3.4vw,2.35rem)] leading-[1.45] text-[#22303e]">
-            {content.title}
-          </h2>
-          <p className="mt-3 font-madani-regular text-[clamp(0.95rem,1.7vw,1.1rem)] leading-8 text-[#5f7167]">
-            {content.subtitle}
-          </p>
-        </div>
+    <section className="bg-[#f4faf7] py-[clamp(64px,7.8vw,112px)]">
+      <div className="site-container flex flex-col gap-12">
+        <header className="flex flex-col gap-2 text-center">
+          <h2 className="text-[clamp(28px,3.125vw,45px)] font-medium leading-[1.7] text-[#414141]">{content.title}</h2>
+          <p className="text-[clamp(16px,1.39vw,20px)] leading-[2] text-[#676767]">{content.subtitle}</p>
+        </header>
 
-        <div className="mt-10 w-full overflow-hidden rounded-2xl md:mt-12">
+        {/* The image file has wide empty margins: from md up, Figma's 1200×560 slot trims them,
+            and the mask fades the cut so the image's glow doesn't end in a straight line */}
+        <div className="flex w-full items-center overflow-hidden rounded-3xl md:aspect-[1200/560] md:[mask-image:linear-gradient(transparent,#000_6%,#000_94%,transparent)]">
           <div className="sites-hierarchy-pulse">
             <Image
               src={img1}

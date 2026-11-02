@@ -1,25 +1,6 @@
 "use client";
 
-import {
-  Boxes,
-  ChevronDown,
-  Clock3,
-  Link2,
-  LogIn,
-  MapPin,
-  Package,
-  PackageCheck,
-  Printer,
-  RotateCcw,
-  Route,
-  ScrollText,
-  ShoppingCart,
-  Truck,
-  Users,
-  Warehouse,
-  Zap,
-  type LucideIcon,
-} from "lucide-react";
+import { ChevronDown, LogIn } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -27,32 +8,20 @@ import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../../i18n/LanguageContext";
 import AnmtionTow from "../../ui-commponets/Page/Index/Hero/AnmtionTow";
 
-const MEGA_MENU_ICONS: Record<string, LucideIcon> = {
-  orderPrep: PackageCheck,
-  routes: Route,
-  locations: Warehouse,
-  printing: Printer,
-  returns: RotateCcw,
-  stock: Boxes,
-  transfer: Truck,
-  purchase: ShoppingCart,
-  products: Package,
-  automation: Zap,
-  permissions: Users,
-  activityLog: ScrollText,
-  integrations: Link2,
-  lateOrders: Clock3,
-};
-
 const FEATURE_LINKS: Record<string, string> = {
-  orderPrep: "/order-processing",
+  orderPrep: "/order-preparation",
+  automation: "/order-processing",
   routes: "/traking",
   locations: "/sites",
   printing: "/printing",
   returns: "/returns",
   stock: "/inventory",
+  warehouseMerge: "/warehouse-merge",
+  delivery: "/delivery",
 };
 const FEATURE_PATHS = Array.from(new Set(Object.values(FEATURE_LINKS)));
+// Pages whose hero runs under the (transparent-at-top) header
+const HERO_OVERLAY_ROUTES = ["/", "/order-preparation", "/traking", "/sites", "/printing", "/returns", "/warehouse-merge", "/delivery"];
 
 function MegaMenuLink({
   title,
@@ -65,22 +34,22 @@ function MegaMenuLink({
   iconId: string;
   href?: string;
 }) {
-  const Icon = MEGA_MENU_ICONS[iconId] ?? MapPin;
+  const pathname = usePathname();
   const linkHref = href ?? "#";
+  const isCurrent = Boolean(href) && pathname.startsWith(linkHref);
+  // Icons are painted through a CSS mask so they can recolor on hover / current
+  const iconMask = `url(/mega/${iconId}.svg)`;
 
   return (
     <Link
       href={linkHref}
-      className="group flex items-start gap-3 rounded-xl px-3 py-2.5 no-underline transition-all duration-200 hover:bg-[#f0faf4]"
+      aria-current={isCurrent ? "page" : undefined}
+      className={`mega-item ${isCurrent ? "mega-item--current" : ""}`}
     >
-      <span className="mt-0.5 shrink-0 text-[#6f7f77] transition-colors group-hover:text-[#24a259]">
-        <Icon size={18} strokeWidth={1.75} aria-hidden />
-      </span>
-      <span className="min-w-0 flex-1">
-        <span className="block text-[0.95rem] font-semibold leading-snug text-[#22303e] transition-colors group-hover:text-[#24a259]">
-          {title}
-        </span>
-        <span className="mt-1 block text-[0.82rem] leading-[1.55] text-[#6f7f77]">{description}</span>
+      <span aria-hidden className="mega-item__icon" style={{ maskImage: iconMask, WebkitMaskImage: iconMask }} />
+      <span className="mega-item__text">
+        <span className="mega-item__name">{title}</span>
+        <span className="mega-item__desc">{description}</span>
       </span>
     </Link>
   );
@@ -98,7 +67,7 @@ export default function Navber() {
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [activeSection, setActiveSection] = useState<string>("home");
   const [isScrolled, setIsScrolled] = useState(false);
-  const isHome = pathname === "/";
+  const overlaysHero = HERO_OVERLAY_ROUTES.includes(pathname);
 
   const sectionHref = (hash: string) => (pathname === "/" ? hash : `/${hash}`);
 
@@ -195,7 +164,7 @@ export default function Navber() {
     };
   }, []);
 
-  const isHeaderSolid = isScrolled || isMobileMenuOpen;
+  const isHeaderSolid = isScrolled || isMobileMenuOpen || isMegaOpen;
 
   const navLinkClass = (sectionId: string) =>
     `inline-flex items-center gap-1 text-base font-medium leading-none no-underline transition-colors ${
@@ -206,7 +175,7 @@ export default function Navber() {
     <header
       className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
         isHeaderSolid ? "border-[#edf2ee] bg-white" : "border-transparent bg-transparent"
-      } ${isHome ? "-mb-[70px] max-[1140px]:-mb-[69px]" : ""}`}
+      } ${overlaysHero ? "-mb-[70px] max-[1140px]:-mb-[69px]" : ""}`}
     >
       <div className="site-container flex min-h-[69px] items-center justify-between gap-5 max-[1140px]:relative max-[1140px]:min-h-[68px] max-[1140px]:justify-start">
         <button
@@ -271,25 +240,25 @@ export default function Navber() {
             <div
               className={`mega-menu-panel ${isMegaOpen ? "mega-menu-panel--open" : "mega-menu-panel--closed"}`}
             >
-              <div key={megaAnimKey} className="site-container mega-menu-grid grid grid-cols-4 gap-x-8 py-9">
-                <div className="mega-menu-intro px-1 text-center">
-                  <h3 className="mb-4 text-[1.35rem] font-semibold leading-snug text-[#22303e]">
+              <div key={megaAnimKey} className="mega-menu-inner">
+                <div className="mega-menu-intro">
+                  <h3 className="mega-menu-intro__title">
                     {megaMenu.intro.titleBefore}
                     <AnmtionTow inline withBang={false} className="brand-letters-stage--mega" />
                   </h3>
-                  <p className="mega-menu-desc mx-auto max-w-[15rem] text-[0.92rem] leading-[1.75] text-[#6f7f77]">
-                    {megaMenu.intro.description}
-                  </p>
+                  <p className="mega-menu-desc">{megaMenu.intro.description}</p>
                 </div>
 
-                {megaMenu.columns.map((column, index) => (
-                  <div
-                    key={column.id}
-                    className="mega-menu-column border-s border-[#edf3ee] ps-5"
-                    style={{ animationDelay: `${0.08 + index * 0.07}s` }}
-                  >
-                    <h4 className="mb-4 text-base font-semibold text-[#24a259]">{column.title}</h4>
-                    <div className="flex flex-col gap-0.5">
+                <span aria-hidden className="mega-menu-divider" />
+
+                <div className="mega-menu-columns">
+                  {megaMenu.columns.map((column, index) => (
+                    <div
+                      key={column.id}
+                      className="mega-menu-column"
+                      style={{ animationDelay: `${0.08 + index * 0.07}s` }}
+                    >
+                      <h4 className="mega-menu-column__title">{column.title}</h4>
                       {column.items.map((item) => (
                         <MegaMenuLink
                           key={item.id}
@@ -300,8 +269,8 @@ export default function Navber() {
                         />
                       ))}
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>

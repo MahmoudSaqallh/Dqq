@@ -147,10 +147,8 @@ function FlowTextCard({ title, description, isRtl }: { title: string; descriptio
     <div className="order-processing-active-border h-full rounded-[1.75rem] md:rounded-[2rem]">
       <div
         dir={isRtl ? "rtl" : "ltr"}
-        className="order-processing-active-border-inner relative flex min-h-[280px] flex-col items-center justify-center rounded-[calc(1.75rem-3px)] bg-white px-6 py-8 text-center md:min-h-[360px] md:rounded-[calc(2rem-3px)] md:px-9 md:py-10"
+        className="order-processing-active-border-inner flex min-h-[280px] flex-col items-center justify-center rounded-[calc(1.75rem-3px)] bg-white px-6 py-8 text-center md:min-h-[360px] md:rounded-[calc(2rem-3px)] md:px-9 md:py-10"
       >
-        <span className="absolute end-0 top-0 h-[3px] w-14 rounded-full bg-[#24a259]" aria-hidden />
-        <span className="absolute bottom-0 start-0 h-14 w-[3px] rounded-full bg-[#24a259]" aria-hidden />
         <h3 className="font-madani-semibold text-[clamp(1.35rem,2.4vw,1.85rem)] leading-[1.45] text-[#24a259]">{title}</h3>
         <p className="mt-5 max-w-[34ch] font-madani-regular text-[clamp(0.9rem,1.5vw,1rem)] leading-8 text-[#5f7167] md:leading-9">
           {description}

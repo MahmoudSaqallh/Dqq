@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="173.242" height="41.5466" viewBox="0 0 173.242 41.5466" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+#Vector_3 { transform-box: fill-box; transform-origin: center; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+#Vector_3 { animation: spin 4.5s ease-in-out infinite; }
+@keyframes spin { 0%, 33% { transform: rotate(0); } 62%, 100% { transform: rotate(-360deg); } }
+</style>
+<g id="Group">
+<path id="Vector" d="M161.875 0.391949H11.3665C5.30542 0.391949 0.391949 5.30542 0.391949 11.3665V30.1801C0.391949 36.2412 5.30542 41.1547 11.3665 41.1547H161.875C167.936 41.1547 172.85 36.2412 172.85 30.1801V11.3665C172.85 5.30542 167.936 0.391949 161.875 0.391949Z" fill="white" stroke-width="0.783898" stroke="#DAE8DF"/>
+<path id="Vector_2" d="M149.333 31.7479C155.394 31.7479 160.307 26.8344 160.307 20.7733C160.307 14.7122 155.394 9.79873 149.333 9.79873C143.272 9.79873 138.358 14.7122 138.358 20.7733C138.358 26.8344 143.272 31.7479 149.333 31.7479Z" fill="#E8F5ED"/>
+<path id="Vector_3" d="M143.845 22.3411C144.301 23.4566 145.111 24.3918 146.151 25.0009C147.19 25.6107 148.402 25.8608 149.598 25.7134C150.794 25.5653 151.909 25.0283 152.768 24.184C153.629 23.3398 154.187 22.2361 154.357 21.043C154.528 19.8499 154.301 18.634 153.711 17.5828C153.122 16.5316 152.202 15.7038 151.096 15.2272C149.989 14.7506 148.756 14.6518 147.587 14.9458C146.418 15.2398 145.379 15.91 144.629 16.8538M143.845 12.9343V17.6377H148.549" stroke-width="1.25424" stroke-linecap="round" stroke-linejoin="round" stroke="#22A358"/>
+</g>
+</svg>

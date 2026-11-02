@@ -29,27 +29,37 @@ export const dictionaries = {
               {
                 id: "orderPrep",
                 title: "تجهيز الطلبات",
-                description: "جهّز وأرسل الطلبات بخطوات أقل",
+                description: "جهّز وأرسل طلباتك بخطوات أقل ووقت أسرع",
               },
               {
                 id: "routes",
                 title: "المسارات",
-                description: "تنظيم خطوات تجهيز الطلبات",
+                description: "رتّب خطوات تجهيز الطلبات بالطريقة اللي تناسبك",
               },
               {
                 id: "locations",
                 title: "المواقع والمستودعات",
-                description: "نظّم مستودعك بشكل واضح",
+                description: "رتّب مستودعك بطريقة واضحة وتوصل لأي منتج بسرعة",
               },
               {
                 id: "printing",
                 title: "الطباعة الآلية",
-                description: "اطبع بوليصات وأرقام وباركودات وفواتير تلقائياً",
+                description: "اطبع البوليصات والباركود والفواتير تلقائيًا",
               },
               {
                 id: "returns",
                 title: "إدارة المرتجعات",
-                description: "تتبّع كامل لكل مرتجع",
+                description: "تتبع كامل لكل مرتجع وتأثيره على المخزون",
+              },
+              {
+                id: "warehouseMerge",
+                title: "دمج المستودعات",
+                description: "مخزون موحّد لكل منتج في جميع مستودعاتك",
+              },
+              {
+                id: "delivery",
+                title: "تسليم المناديب",
+                description: "وزّع الطلبات على المناديب ونظّم عملية التسليم",
               },
             ],
           },
@@ -60,22 +70,27 @@ export const dictionaries = {
               {
                 id: "stock",
                 title: "المخزون",
-                description: "تتبّع الكميات لحظة بلحظة",
+                description: "تابع كمياتك لحظة بلحظة بدون أي مفاجآت",
               },
               {
                 id: "transfer",
                 title: "ترحيل المخزون",
-                description: "انقل البضائع بين مستودعات بسهولة",
+                description: "انقل بضاعتك بين المستودعات بسهولة وتوثيق كامل",
               },
               {
                 id: "purchase",
                 title: "طلبات الشراء",
-                description: "إنشاء وتتبّع طلبات الشراء",
+                description: "أنشئ طلبات الشراء وتابعها من البداية لين الاستلام",
               },
               {
                 id: "products",
                 title: "المنتجات",
-                description: "بيانات منتجات منظّمة ومتزامنة",
+                description: "بيانات منتجاتك منظمة ومتزامنة مع متاجرك",
+              },
+              {
+                id: "inventoryCount",
+                title: "جرد المخزون",
+                description: "نفّذ عمليات الجرد واكتشف الفروقات بدقة",
               },
             ],
           },
@@ -86,27 +101,37 @@ export const dictionaries = {
               {
                 id: "automation",
                 title: "الأتمتة",
-                description: "خلي النظام يشتغل عنك بقواعد ذكية",
+                description: "خلّي النظام يشتغل عنك بقواعد ذكية توفر وقتك",
               },
               {
                 id: "permissions",
                 title: "الصلاحيات وإدارة الموظفين",
-                description: "توزيع المهام والصلاحيات",
+                description: "وزّع المهام والصلاحيات بدون فوضى",
               },
               {
                 id: "activityLog",
                 title: "سجل العمليات",
-                description: "كل إجراء مسجّل بالوقت والتاريخ",
+                description: "كل إجراء مسجّل بالوقت والتاريخ والموظف",
               },
               {
                 id: "integrations",
-                title: "خدمات الربط",
-                description: "ربط متاجر وشركات شحن خلال دقائق",
+                title: "خدمات الربط مع المتاجر وشركات الشحن",
+                description: "اربط متاجرك وشركات الشحن بدقائق وبدون تعقيد",
               },
               {
                 id: "lateOrders",
                 title: "إدارة الطلبات المتأخرة",
-                description: "تتبّع الطلبات المتأخرة وتنبيهات فورية",
+                description: "تتبع الطلبات المتأخرة مع تنبيهات فورية لكل تأخير",
+              },
+              {
+                id: "whatsapp",
+                title: "رسائل واتساب ذكية",
+                description: "أرسل رسائل لعملائك تلقائيًا عبر واتساب",
+              },
+              {
+                id: "reports",
+                title: "التقارير والتحليلات",
+                description: "تقارير جاهزة مع فلاتر مرنة وتصدير سهل.",
               },
             ],
           },
@@ -446,10 +471,10 @@ export const dictionaries = {
     returns: {
       hero: {
         badge: "إدارة المرتجعات",
-        title: "المرتجعات ما عادت مشكلة",
-        titleLineTwo: "صارت عملية منظمة",
+        title: "المرتجعات ما عادت مشكلة؛",
+        titleLineTwo: "صارت عملية منظّمة",
         subtitle:
-          "من لحظة طلب الإرجاع، مروراً بإنشاء البوليصة والاستلام، وصولاً للفحص وإعادة التخزين — كل خطوة واضحة وموثقة.",
+          "من لحظة طلب الإرجاع، مروراً بإنشاء البوليصة والاستلام، وصولاً للفحص وإعادة التخزين كل خطوة واضحة وموثّقة.",
         cta: "اكتشف الميزات",
       },
       howItWorks: {
@@ -465,50 +490,50 @@ export const dictionaries = {
         ],
       },
       features: {
-        title: "مشاكل المرتجعات حلها نظام ذكي",
+        title: "مشاكل المرتجعات حلّها نظام ذكي",
         subtitle:
-          "كل مشكلة كانت تسبب تأخير وتكاليف — النظام يتتبعها ويحلها خطوة بخطوة.",
+          "كل مشكلة كانت تأخّر المرتجعات وتكلّفك، الحين النظام يتابعها ويحلّها تلقائيًا.",
         problemLabel: "وش المشكلة؟",
         solutionLabel: "كيف حليناها؟",
         cases: [
           {
             id: "documented-return",
             number: "01",
-            label: "إرجاع موثق",
-            problem: "العميل يرجع الطلب وما في طريقة واضحة لتوثيق السبب",
-            solutionTitle: "إرجاع موثق بالسبب للطلب كامل أو لكل منتج",
+            label: "إرجاع موثّق",
+            problem: "العميل يرجّع الطلب وما فيه طريقة واضحة لتوثيق السبب",
+            solutionTitle: "إرجاع موثّق بالسبب للطلب كامل أو لكل منتج",
             solutionDescription:
-              "اربط كل منتج بسبب إرجاع واضح، عشان تعرف وين المشكلة وتتبعها بسهولة بدون تخمين أو ملفات ورقية.",
+              "سواء إرجاع كامل أو جزئي، كل منتج يُربط بسبب الإرجاع. سجل واضح لكل عملية إرجاع يسهّل التتبع والتحليل.",
             image: "/retuern/returns-1.webp",
           },
           {
             id: "return-label",
             number: "02",
             label: "بوليصة إرجاع",
-            problem: "إنشاء بوليصة إرجاع يدوي وبياخد وقت",
+            problem: "إنشاء بوليصة إرجاع يدوي ويأخذ وقت",
             solutionTitle: "بوليصة إرجاع بضغطة عبر شركة الشحن أو مندوبك",
             solutionDescription:
-              "أنشئ بوليصة الإرجاع مباشرة من النظام عبر شركة الشحن أو المندوب — بدون خطوات يدوية أو تأخير.",
+              "النظام ينشئ بوليصة إرجاع تلقائيًا عبر شركات الشحن المربوطة أو عبر مندوبك الخاص. ما تحتاج تطلع من النظام.",
             image: "/retuern/returns-2.webp",
           },
           {
             id: "partial-return",
             number: "03",
             label: "إرجاع جزئي",
-            problem: "العميل يرجع منتجين من عشرة والباقي سليم",
-            solutionTitle: "إرجاع جزئي ذكي — طلب جديد للمنتجات المرتجعة فقط",
+            problem: "العميل يبي يرجّع منتجين من طلب فيه 10 وتتلخبط الأمور",
+            solutionTitle: "إرجاع جزئي ذكي طلب جديد بالمنتجات المرتجعة فقط",
             solutionDescription:
-              "حدد المنتجات المرتجعة فقط، والنظام ينشئ طلب إرجاع جزئي مرتب بدون ما يأثر على باقي الطلب.",
+              "دقّق ينشئ طلب إرجاع جديد مماثل للأصلي بالمنتجات المحددة فقط، مع بوليصة إرجاع واستقبال عبر التطبيق كل شي منظّم.",
             image: "/retuern/returns-3.webp",
           },
           {
             id: "returns-dept",
             number: "04",
             label: "قسم المرتجعات",
-            problem: "المرتجعات تختلط بالمخزون السليم بدون فحص",
-            solutionTitle: "قسم مرتجعات مخصص — فحص أولاً، تخزين ثانياً",
+            problem: "المرتجعات ترجع وتنحط مع المخزون السليم بدون فحص",
+            solutionTitle: "قسم مرتجعات مخصص فحص أولاً، تخزين ثانياً",
             solutionDescription:
-              "اربط المرتجعات بموقع مخصص في المستودع للمراجعة والفحص قبل ما ترجع للأرفف.",
+              "ربط المرتجعات بموقع مخصص بالمستودع. الكمية تروح لقسم المرتجعات أولاً للمراجعة والفحص، وبعدين تقرر: تُصفّ على الرفوف أو تُعاد شحنها.",
             image: "/retuern/returns-4.webp",
           },
           {
@@ -516,9 +541,9 @@ export const dictionaries = {
             number: "05",
             label: "موظف المرتجعات",
             problem: "ما أحد مسؤول عن استقبال المرتجعات كل واحد يستلم على كيفه",
-            solutionTitle: "موظف مخصص للمرتجعات — استقبال وتوثيق عبر التطبيق",
+            solutionTitle: "موظف مخصص للمرتجعات استقبال وتوثيق عبر التطبيق",
             solutionDescription:
-              "خصص موظف مسؤول يستقبل الكميات عبر التطبيق مع تسجيل تلقائي في سجل العمليات وزيادة المخزون.",
+              "خصّص موظف مسؤول عن المرتجعات يستقبل الكميات عبر التطبيق مع تسجيل تلقائي بسجل العمليات وزيادة المخزون.",
             image: "/retuern/returns-5.webp",
           },
         ],
@@ -527,11 +552,11 @@ export const dictionaries = {
         badge: "قريباً",
         title: "خلّي عميلك يرجّع طلبه بنفسه.",
         description:
-          "قواعد إرجاع مخصصة + صفحة مرتجعات يضيفها عميلك لمتجر العميل النهائي — يدخل رقم جواله، يشوف طلباته، ويطلب إرجاع حسب القواعد اللي حددتها.",
+          "قواعد إرجاع مخصصة، وصفحة مرتجعات تضيفها إلى متجرك؛ يدخل فيها العميل النهائي رقم جواله، ويشوف طلباته، ويطلب الإرجاع حسب القواعد اللي حدّدتها.",
         cards: [
           {
             title: "منتجات غير قابلة للإرجاع",
-            subtitle: "حدد المنتجات اللي ما ترجع",
+            subtitle: "حدّد المنتجات اللي ما ترجع",
           },
           {
             title: "قواعد حسب المدينة",
@@ -539,13 +564,210 @@ export const dictionaries = {
           },
           {
             title: "صفحة مرتجعات للمتجر",
-            subtitle: "يدخل رقم جواله ويرجع بنفسه",
+            subtitle: "يدخل رقم جواله ويرجّع بنفسه",
           },
         ],
       },
       benefits: {
         title: "مرتجعاتك تحت السيطرة من أول يوم.",
-        subtitle: "توثيق، فحص، وإعادة تخزين — كل شيء منظم ومربوط بالتطبيق.",
+        subtitle: "توثيق، فحص، وإعادة تخزين كل شي منظّم ومربوط بالتطبيق.",
+        cta: "انضم إلى دقّق",
+      },
+    },
+    warehouseMerge: {
+      hero: {
+        badge: "دمج المستودعات",
+        title: "مخزون موحّد لجميع مستودعاتك.",
+        subtitle: "مطابقة ذكية للمنتجات ودمج فوري للكميات بين المستودعات.",
+        cta: "اكتشف الميزات",
+      },
+      howItWorks: {
+        title: "كيف تعمل ميزة دمج المستودعات؟",
+        subtitle: "وحّد مخزونك في خطوات بسيطة",
+        steps: [
+          {
+            title: "اختر المستودعات",
+            text: "اختر المستودعات التي ترغب بدمجها في مخزون موحّد وابدأ العملية.",
+          },
+          {
+            title: "مطابقة ذكية بالذكاء الاصطناعي",
+            text: "يقوم الذكاء الاصطناعي بمطابقة المنتجات واقتراح عمليات الدمج تلقائيًا.",
+          },
+          {
+            title: "المراجعة والتأكيد",
+            text: "راجع اقتراحات الذكاء الاصطناعي مع إمكانية التعديل والدمج اليدوي.",
+          },
+        ],
+      },
+      features: {
+        title: "كيف دمج المستودعات وحّد مخزونك؟",
+        subtitle: "كان كل مستودع يشتغل لحاله، الحين منتجاتك مربوطة ومخزونك رقم واحد في كل مكان.",
+        problemLabel: "وش المشكلة؟",
+        solutionLabel: "كيف حليناها؟",
+        cases: [
+          {
+            id: "smart-matching",
+            number: "01",
+            label: "مطابقة ذكية",
+            problem: "نفس المنتج، بس برمز SKU مختلف في كل مستودع",
+            solutionTitle: "مطابقة ذكية بالذكاء الاصطناعي",
+            solutionDescription:
+              "يفحص جميع منتجاتك ويقوم بربطها تلقائيًا باستخدام رمز SKU واسم المنتج، حتى في حال اختلاف أسماء العناصر، يستخدم الذكاء الاصطناعي لاكتشاف التطابق بدقة.",
+            image: "/warehouse-merge/marge-1.png",
+          },
+          {
+            id: "unified-stock",
+            number: "02",
+            label: "مخزون موحّد",
+            problem: "كل مستودع له رصيد لحاله والمخزون مبعثر",
+            solutionTitle: "مخزون موحّد لكل منتج",
+            solutionDescription:
+              "ادمج المنتجات المتطابقة برقم مخزون واحد يسري على كل مستودعاتك. منتج واحد، كمية واحدة، ووضوح كامل في كل مكان.",
+            image: "/warehouse-merge/marge-2.png",
+          },
+          {
+            id: "manual-merge",
+            number: "03",
+            label: "دمج يدوي",
+            problem: "في منتجات ما لها تطابق تلقائي وتظل متفرقة بين المستودعات",
+            solutionTitle: "دمج يدوي",
+            solutionDescription:
+              "حتى لو ما لقى الذكاء الاصطناعي تطابقًا، تختار المنتجات بنفسك وتدمجها بضغطة.",
+            image: "/warehouse-merge/marge-3.png",
+          },
+        ],
+      },
+      cta: {
+        title: "ادمج مستودعاتك اليوم: مخزون واحد، وصفر أخطاء.",
+        subtitle:
+          "وحّد مخزونك عبر كل مستودعاتك ومنصاتك، واترك دقّق يتتبع كل وحدة ويحدّثها فوراً — بيع زائد أقل، عملاء أسعد، وطلبات تصل في وقتها.",
+        cta: "انضم إلى دقّق",
+      },
+    },
+    delivery: {
+      hero: {
+        badge: "تسليم المناديب",
+        title: "طلبات موزّعة، جولات منظّمة،",
+        titleLineTwo: "وتفاصيل واضحة.",
+        subtitle:
+          "أسند الطلبات لموظفينك، واجمع الشحنات في جولات توصيل واضحة، مع كل تفاصيل العميل اللي يحتاجها المندوب.",
+        cta: "اكتشف الميزات",
+      },
+      overview: {
+        eyebrow: "إدارة التوصيل والمناديب",
+        title: "من الإسناد إلى التسليم، كل خطوة واضحة.",
+        cards: [
+          {
+            title: "تفاصيل العميل حاضرة",
+            text: "اسم العميل وعنوانه ورقم التواصل، تظهر مع الشحنة وقت التوصيل.",
+          },
+          {
+            title: "أسند الطلب بوضوح",
+            text: "كل طلب مع موظف محدّد، وكل مندوب يعرف مسؤولياته.",
+          },
+          {
+            title: "نظّم جولات التوصيل",
+            text: "اجمع الشحنات ورتّب محطاتها في جولة واحدة واضحة.",
+          },
+          {
+            title: "تابع كل محاولة",
+            text: "اعرف عدد المحاولات ونتيجتها، وسبب تعذّر التسليم.",
+          },
+        ],
+        attemptLabels: ["تعذّر التسليم","إعادة المحاولة","تم التسليم"],
+      },
+      rounds: {
+        titleLineOne: "طلبات كثيرة.",
+        titleLineTwo: "جولة واحدة منظّمة.",
+        subtitle: "اجمع الشحنات في جولة، وشوف محطات التسليم وتفاصيلها بوضوح.",
+        phoneAlt: "خريطة التسليم وجولة المندوب في تطبيق دقّق",
+        items: [
+          {
+            title: "اختَر شحنات الجولة",
+            text: "حدّد الشحنات التي ستوصلها، واجمعها في جولة واحدة بدل التنقّل بين الطلبات.",
+          },
+          {
+            title: "شوف المحطات على الخريطة",
+            text: "كل محطة ظاهرة في مكانها. افتحها لتراجع تفاصيل الشحنة قبل الوصول.",
+          },
+          {
+            title: "عدّل الجولة حسب الحاجة",
+            text: "راجع الشحنات داخل الجولة وعدّلها، لتبقى الجولة مناسبة لما ستوصله.",
+          },
+          {
+            title: "اعرف وين وصلت",
+            text: "تابع الشحنات التي تم تسليمها، وما تعذّر تسليمه، وما تبقّى في الجولة.",
+          },
+        ],
+      },
+      features: {
+        title: "مزايا تسليم المناديب",
+        subtitle: "أدوات تغطّي رحلة الشحنة، من لوحة التحكم حتى باب العميل.",
+        cases: [
+          {
+            id: "assign-orders",
+            label: "إسناد الطلبات",
+            title: "أسند الطلبات للموظفين",
+            text: "حدّد الموظف المسؤول عن التوصيل من لوحة التحكم، لتظهر له الطلبات المسندة في التطبيق.",
+            image: "/delivery/delivery-1.png",
+            items: [
+              {
+                title: "اختَر المندوب بنفسك",
+                text: "أسند الطلب لموظف محدّد، ليعرف بالضبط ما عليه توصيله.",
+              },
+              {
+                title: "أو خلّي الإسناد تلقائي",
+                text: "حدّد شروط الأتمتة، وأسند الطلبات المطابقة للموظف تلقائيًا.",
+              },
+            ],
+          },
+          {
+            id: "customer-details",
+            label: "تفاصيل العميل",
+            title: "تفاصيل العميل، حاضرة وقت التوصيل.",
+            text: "كل معلومة تساعد المندوب يوصّل الطلب بالطريقة التي يتوقعها العميل.",
+            image: "/delivery/delivery-2.png",
+            items: [
+              {
+                title: "ملاحظات العميل",
+                text: "ملاحظات العميل من ضمن الطلب، لفحصها قبل التسليم.",
+              },
+              {
+                title: "العميل قدّامك. والتواصل أسهل.",
+                text: "تفاصيل العميل تظهر مع الشحنة، من اسمه وعنوانه إلى رقم التواصل معه.",
+              },
+              {
+                title: "العنوان تغيّر؟ خليه محدّث.",
+                text: "عدّل عنوان الطلب إذا غيّره العميل، ليكون موقع التسليم الصحيح واضحًا للفريق.",
+              },
+            ],
+          },
+          {
+            id: "delivery-attempts",
+            label: "محاولات التسليم",
+            title: "كل محاولة إلها نتيجة. وكل نتيجة موثّقة.",
+            text: "اعرف ما جرى مع كل شحنة، من أول محاولة وحتى إتمام التسليم.",
+            image: "/delivery/delivery-3.png",
+            items: [
+              {
+                title: "عدد المحاولات أمامك",
+                text: "راجع عدد محاولات التسليم لكل شحنة، لتعرف ما يحتاج إلى متابعة.",
+              },
+              {
+                title: "سبب التعذّر واضح",
+                text: "العميل لا يرد؟ العنوان غير صحيح؟ سجّل سبب عدم التسليم وأرفق ما يوضّحه.",
+              },
+              {
+                title: "وثّق لحظة التسليم",
+                text: "أضف ملاحظات التسليم وصورة الإثبات، لتبقى النتيجة واضحة لفريقك.",
+              },
+            ],
+          },
+        ],
+      },
+      cta: {
+        title: "ابدأ بتنظيم توصيلاتك من مكان واحد.",
+        subtitle: "أسند الطلبات لموظفينك، ونظّم جولات التوصيل، وتابع نتيجة كل محاولة من مكان واحد.",
         cta: "انضم إلى دقّق",
       },
     },
@@ -841,27 +1063,37 @@ export const dictionaries = {
               {
                 id: "orderPrep",
                 title: "Order Processing",
-                description: "Prepare and ship orders in fewer steps",
+                description: "Prepare and ship your orders in fewer steps and less time",
               },
               {
                 id: "routes",
                 title: "Routes",
-                description: "Organize order preparation steps",
+                description: "Arrange order preparation steps the way that suits you",
               },
               {
                 id: "locations",
                 title: "Locations & Warehouses",
-                description: "Keep your warehouse clearly organized",
+                description: "Organize your warehouse clearly and reach any product fast",
               },
               {
                 id: "printing",
                 title: "Auto Printing",
-                description: "Print labels, barcodes, and invoices automatically",
+                description: "Print waybills, barcodes, and invoices automatically",
               },
               {
                 id: "returns",
                 title: "Returns Management",
-                description: "Full tracking for every return",
+                description: "Full tracking of every return and its effect on stock",
+              },
+              {
+                id: "warehouseMerge",
+                title: "Warehouse Merge",
+                description: "Unified stock for each product across all your warehouses",
+              },
+              {
+                id: "delivery",
+                title: "Courier Handover",
+                description: "Assign orders to couriers and organize delivery",
               },
             ],
           },
@@ -872,22 +1104,27 @@ export const dictionaries = {
               {
                 id: "stock",
                 title: "Inventory",
-                description: "Track quantities in real time",
+                description: "Track your quantities in real time with no surprises",
               },
               {
                 id: "transfer",
                 title: "Stock Transfer",
-                description: "Move goods between warehouses easily",
+                description: "Move goods between warehouses easily with full records",
               },
               {
                 id: "purchase",
                 title: "Purchase Orders",
-                description: "Create and track purchase orders",
+                description: "Create purchase orders and follow them through to receipt",
               },
               {
                 id: "products",
                 title: "Products",
-                description: "Organized, synced product data",
+                description: "Product data kept organized and synced with your stores",
+              },
+              {
+                id: "inventoryCount",
+                title: "Stock Count",
+                description: "Run stock counts and spot differences accurately",
               },
             ],
           },
@@ -898,27 +1135,37 @@ export const dictionaries = {
               {
                 id: "automation",
                 title: "Automation",
-                description: "Let the system work for you with smart rules",
+                description: "Let the system work for you with time-saving smart rules",
               },
               {
                 id: "permissions",
                 title: "Roles & Staff Management",
-                description: "Assign tasks and permissions clearly",
+                description: "Assign tasks and permissions without the chaos",
               },
               {
                 id: "activityLog",
                 title: "Activity Log",
-                description: "Every action logged with time and date",
+                description: "Every action logged with time, date, and employee",
               },
               {
                 id: "integrations",
-                title: "Integrations",
-                description: "Connect stores and couriers in minutes",
+                title: "Store & Courier Integrations",
+                description: "Connect your stores and couriers in minutes, hassle-free",
               },
               {
                 id: "lateOrders",
                 title: "Late Orders",
-                description: "Track delayed orders with instant alerts",
+                description: "Track delayed orders with instant alerts for every delay",
+              },
+              {
+                id: "whatsapp",
+                title: "Smart WhatsApp Messages",
+                description: "Message your customers automatically over WhatsApp",
+              },
+              {
+                id: "reports",
+                title: "Reports & Analytics",
+                description: "Ready-made reports with flexible filters and easy export",
               },
             ],
           },
@@ -1359,6 +1606,203 @@ export const dictionaries = {
       benefits: {
         title: "Your returns under control from day one.",
         subtitle: "Document, inspect, and restock — everything organized and linked to the app.",
+        cta: "Join DQQ",
+      },
+    },
+    warehouseMerge: {
+      hero: {
+        badge: "Warehouse Merge",
+        title: "One unified stock across all your warehouses.",
+        subtitle: "Smart product matching and instant quantity merging between warehouses.",
+        cta: "Explore Features",
+      },
+      howItWorks: {
+        title: "How does warehouse merge work?",
+        subtitle: "Unify your stock in a few simple steps",
+        steps: [
+          {
+            title: "Choose your warehouses",
+            text: "Pick the warehouses you want to merge into one unified stock and start the process.",
+          },
+          {
+            title: "Smart AI matching",
+            text: "AI matches your products and suggests merges automatically.",
+          },
+          {
+            title: "Review and confirm",
+            text: "Review the AI suggestions, with the option to edit and merge manually.",
+          },
+        ],
+      },
+      features: {
+        title: "How does warehouse merge unify your stock?",
+        subtitle: "Each warehouse used to run on its own. Now your products are linked and your stock is one number everywhere.",
+        problemLabel: "What's the problem?",
+        solutionLabel: "How we solved it",
+        cases: [
+          {
+            id: "smart-matching",
+            number: "01",
+            label: "Smart matching",
+            problem: "The same product has a different SKU in each warehouse",
+            solutionTitle: "Smart AI matching",
+            solutionDescription:
+              "It scans all your products and links them automatically by SKU and product name. Even when item names differ, AI detects the match accurately.",
+            image: "/warehouse-merge/marge-1.png",
+          },
+          {
+            id: "unified-stock",
+            number: "02",
+            label: "Unified stock",
+            problem: "Each warehouse has its own balance and stock is scattered",
+            solutionTitle: "One unified stock for each product",
+            solutionDescription:
+              "Merge matching products under one stock number that applies across all your warehouses. One product, one quantity, and full clarity everywhere.",
+            image: "/warehouse-merge/marge-2.png",
+          },
+          {
+            id: "manual-merge",
+            number: "03",
+            label: "Manual merge",
+            problem: "Some products have no automatic match and stay scattered across warehouses",
+            solutionTitle: "Manual merge",
+            solutionDescription:
+              "Even when AI finds no match, you can pick the products yourself and merge them with one click.",
+            image: "/warehouse-merge/marge-3.png",
+          },
+        ],
+      },
+      cta: {
+        title: "Merge your warehouses today: one stock, zero mistakes.",
+        subtitle:
+          "Unify your stock across all your warehouses and platforms, and let DQQ track every unit and update it instantly — less overselling, happier customers, and orders that arrive on time.",
+        cta: "Join DQQ",
+      },
+    },
+    delivery: {
+      hero: {
+        badge: "Courier Handover",
+        title: "Assigned orders, organized rounds,",
+        titleLineTwo: "and clear details.",
+        subtitle:
+          "Assign orders to your staff, group shipments into clear delivery rounds, and give couriers every customer detail they need.",
+        cta: "Explore Features",
+      },
+      overview: {
+        eyebrow: "Delivery and courier management",
+        title: "From assignment to delivery, every step is clear.",
+        cards: [
+          {
+            title: "Customer details at hand",
+            text: "The customer's name, address and phone number appear with the shipment at delivery time.",
+          },
+          {
+            title: "Assign orders clearly",
+            text: "Every order has a named employee, and every courier knows their responsibilities.",
+          },
+          {
+            title: "Organize delivery rounds",
+            text: "Group shipments and arrange their stops in one clear round.",
+          },
+          {
+            title: "Track every attempt",
+            text: "See how many attempts were made, their results, and why a delivery failed.",
+          },
+        ],
+        attemptLabels: ["Delivery failed","Retry","Delivered"],
+      },
+      rounds: {
+        titleLineOne: "Many orders.",
+        titleLineTwo: "One organized round.",
+        subtitle: "Group shipments into a round and see delivery stops and their details clearly.",
+        phoneAlt: "Delivery map and courier round in the DQQ app",
+        items: [
+          {
+            title: "Choose the round's shipments",
+            text: "Pick the shipments you will deliver and group them into one round instead of moving between orders.",
+          },
+          {
+            title: "See the stops on the map",
+            text: "Every stop appears in its place. Open it to review the shipment details before you arrive.",
+          },
+          {
+            title: "Adjust the round as needed",
+            text: "Review and edit the shipments in the round so it stays right for what you are delivering.",
+          },
+          {
+            title: "Know how far you've got",
+            text: "Track what has been delivered, what could not be delivered, and what remains in the round.",
+          },
+        ],
+      },
+      features: {
+        title: "Courier handover features",
+        subtitle: "Tools that cover the shipment's journey, from the dashboard to the customer's door.",
+        cases: [
+          {
+            id: "assign-orders",
+            label: "Order assignment",
+            title: "Assign orders to your staff",
+            text: "Choose the employee responsible for delivery from the dashboard, and their assigned orders appear in the app.",
+            image: "/delivery/delivery-1.png",
+            items: [
+              {
+                title: "Choose the courier yourself",
+                text: "Assign an order to a specific employee so they know exactly what to deliver.",
+              },
+              {
+                title: "Or make assignment automatic",
+                text: "Set automation rules and assign matching orders to an employee automatically.",
+              },
+            ],
+          },
+          {
+            id: "customer-details",
+            label: "Customer details",
+            title: "Customer details, ready at delivery time.",
+            text: "Every piece of information helps the courier deliver the order the way the customer expects.",
+            image: "/delivery/delivery-2.png",
+            items: [
+              {
+                title: "Customer notes",
+                text: "Customer notes are part of the order, so they can be checked before delivery.",
+              },
+              {
+                title: "The customer is in front of you. Contact is easier.",
+                text: "Customer details appear with the shipment, from name and address to phone number.",
+              },
+              {
+                title: "Address changed? Keep it updated.",
+                text: "Edit the order's address if the customer changes it, so the team sees the right delivery location.",
+              },
+            ],
+          },
+          {
+            id: "delivery-attempts",
+            label: "Delivery attempts",
+            title: "Every attempt has a result. Every result is documented.",
+            text: "See what happened with each shipment, from the first attempt until delivery is complete.",
+            image: "/delivery/delivery-3.png",
+            items: [
+              {
+                title: "Attempt count in front of you",
+                text: "Review the number of delivery attempts for each shipment to see what needs follow-up.",
+              },
+              {
+                title: "A clear failure reason",
+                text: "Customer not answering? Wrong address? Record why delivery failed and attach what explains it.",
+              },
+              {
+                title: "Document the moment of delivery",
+                text: "Add delivery notes and a proof photo so the result stays clear for your team.",
+              },
+            ],
+          },
+        ],
+      },
+      cta: {
+        title: "Start organizing your deliveries from one place.",
+        subtitle: "Assign orders to your staff, organize delivery rounds, and track the result of every attempt from one place.",
         cta: "Join DQQ",
       },
     },

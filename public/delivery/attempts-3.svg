@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="173.242" height="41.5466" viewBox="0 0 173.242 41.5466" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+#Group_2, #Vector_3 { transform-box: fill-box; transform-origin: center; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+#Group_2 { animation: pop 4.5s ease-out infinite; }
+@keyframes pop { 0%, 66% { transform: scale(1); } 76% { transform: scale(1.25); } 86%, 100% { transform: scale(1); } }
+</style>
+<g id="Group">
+<path id="Vector" d="M161.875 0.391949H11.3665C5.30542 0.391949 0.391949 5.30542 0.391949 11.3665V30.1801C0.391949 36.2412 5.30542 41.1547 11.3665 41.1547H161.875C167.936 41.1547 172.85 36.2412 172.85 30.1801V11.3665C172.85 5.30542 167.936 0.391949 161.875 0.391949Z" fill="#E8F5ED" stroke-width="0.783898" stroke="#BDDEC9"/>
+<g id="Group_2">
+<path id="Vector_2" d="M149.347 31.7627C155.408 31.7627 160.322 26.8488 160.322 20.7871C160.322 14.7255 155.408 9.81158 149.347 9.81158C143.285 9.81158 138.371 14.7255 138.371 20.7871C138.371 26.8488 143.285 31.7627 149.347 31.7627Z" fill="#22A358"/>
+<path id="Vector_3" d="M144.643 20.7871L147.779 23.923L154.05 17.6513" stroke-width="1.56794" stroke-linecap="round" stroke-linejoin="round" stroke="white"/>
+</g>
+</g>
+</svg>

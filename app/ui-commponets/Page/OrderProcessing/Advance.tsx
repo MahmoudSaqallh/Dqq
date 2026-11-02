@@ -11,7 +11,7 @@ type FeatureItem = {
 };
 
 const FEATURE_ITEMS: FeatureItem[] = [
-  { id: "orderPrep", href: "/order-processing", icon: PackageCheck },
+  { id: "orderPrep", href: "/order-preparation", icon: PackageCheck },
   { id: "routes", href: "/traking", icon: Route },
   { id: "printing", href: "/printing", icon: Printer },
 ];

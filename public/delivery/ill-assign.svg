@@ -1,0 +1,41 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="251" height="185" viewBox="0 0 251 185" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+#Vector, #Group, #Group_2, #Group_3, #Vector_3 { transform-box: fill-box; transform-origin: center; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+#Vector { animation: halo 4s ease-in-out infinite; }
+#Group { animation: float 4s ease-in-out infinite; }
+#Vector_2 { animation: fade 4s ease-in-out infinite; }
+#Vector_3 { animation: arrow 4s ease-in-out infinite; }
+#Group_2 { animation: pulse 4s ease-in-out infinite; }
+#Group_3 { animation: pop 4s ease-out infinite; }
+@keyframes halo { 50% { transform: scale(1.05); } }
+@keyframes float { 50% { transform: translateY(-4px); } }
+@keyframes fade { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+@keyframes arrow { 0%, 100% { transform: translateY(-5px); opacity: .35; } 50% { transform: translateY(1px); opacity: 1; } }
+@keyframes pulse { 0%, 45%, 75%, 100% { transform: scale(1); } 60% { transform: scale(1.06); } }
+@keyframes pop { 0%, 50% { transform: scale(0); } 62% { transform: scale(1.2); } 70%, 92% { transform: scale(1); } 100% { transform: scale(0); } }
+</style>
+<g id="Delivery/Illustration &#226;&#128;&#147; assign">
+<path id="Vector" d="M128.569 164.071C166.404 164.071 197.075 133.399 197.075 95.5647C197.075 57.73 166.404 27.0588 128.569 27.0588C90.734 27.0588 60.0628 57.73 60.0628 95.5647C60.0628 133.399 90.734 164.071 128.569 164.071Z" fill="#F0F8F3"/>
+<path id="Vector_2" d="M129.591 62.8456H131.637M187.872 96.5872V94.2005M136.748 62.8456H140.839M145.95 62.8456H150.041M155.152 62.8456H159.244M164.354 62.8456H168.446M173.556 62.8456H175.602C176.322 62.8456 177.035 62.9088 177.734 63.0321M182.639 65.0639C183.221 65.471 183.77 65.9305 184.278 66.4393C184.787 66.948 185.247 67.4969 185.654 68.0783M187.686 72.9837C187.809 73.6828 187.872 74.3958 187.872 75.1153V77.5021M187.872 83.4645V88.2381" stroke-width="2.04496" stroke="#90CDA8"/>
+<path id="Vector_3" d="M182.761 93.7459L187.874 99.8806L192.986 93.7459" stroke-width="2.04496" stroke-linecap="round" stroke-linejoin="round" stroke="#22A358"/>
+<g id="Group">
+<path id="Vector_4" d="M136.745 46.2523H61.0819C53.1761 46.2523 46.7672 52.6611 46.7672 60.5669V94.3085C46.7672 102.214 53.1761 108.623 61.0819 108.623H136.745C144.651 108.623 151.06 102.214 151.06 94.3085V60.5669C151.06 52.6611 144.651 46.2523 136.745 46.2523Z" fill="#EDF7F1" stroke-width="1.02248" stroke="#CFE5D7"/>
+<path id="Vector_5" d="M128.569 30.9142H52.9061C45.0003 30.9142 38.5914 37.3231 38.5914 45.2289V78.9706C38.5914 86.8764 45.0003 93.2853 52.9061 93.2853H128.569C136.475 93.2853 142.884 86.8764 142.884 78.9706V45.2289C142.884 37.3231 136.475 30.9142 128.569 30.9142Z" fill="white" stroke-width="1.02248" stroke="#D1E5D8"/>
+<path id="Vector_6" d="M74.3749 44.2068H60.0602C54.4132 44.2068 49.8355 48.7845 49.8355 54.4316V68.7462C49.8355 74.3932 54.4132 78.971 60.0602 78.971H74.3749C80.0218 78.971 84.5996 74.3932 84.5996 68.7462V54.4316C84.5996 48.7845 80.0218 44.2068 74.3749 44.2068Z" fill="#E8F5ED"/>
+<path id="Vector_7" d="M62.823 52.7843L58.0174 55.4541V67.7238L67.2197 72.8362L76.4219 67.7238V55.4541L67.2197 50.3418L62.823 52.7843ZM67.2197 72.8362V60.5665M76.4219 55.4541L67.2197 60.5665M62.823 52.7843L62.1073 52.3867M62.823 52.7843L71.3096 57.4991M58.0174 55.4541L67.2197 60.5665" stroke-width="1.53371" stroke-linejoin="round" stroke="#22A358"/>
+<path id="Vector_8" d="M95.8466 53.4099H128.566M95.8466 62.6122H121.409M95.8466 71.8145H112.206" stroke-width="3.06743" stroke-linecap="round" stroke="#B7CCBE"/>
+</g>
+<g id="Group_2">
+<path id="Vector_9" d="M180.897 164.12C199.765 164.12 215.06 148.825 215.06 129.957C215.06 111.088 199.765 95.7929 180.897 95.7929C162.028 95.7929 146.733 111.088 146.733 129.957C146.733 148.825 162.028 164.12 180.897 164.12Z" fill="white" stroke-width="1.06762" stroke="#D1E5D8"/>
+<path id="Vector_10" d="M180.898 157.715C196.229 157.715 208.656 145.287 208.656 129.957C208.656 114.626 196.229 102.199 180.898 102.199C165.568 102.199 153.14 114.626 153.14 129.957C153.14 145.287 165.568 157.715 180.898 157.715Z" fill="#22A358"/>
+<path id="Vector_11" d="M180.897 128.889C185.025 128.889 188.37 125.543 188.37 121.416C188.37 117.288 185.025 113.943 180.897 113.943C176.77 113.943 173.424 117.288 173.424 121.416C173.424 125.543 176.77 128.889 180.897 128.889Z" stroke-width="2.13524" stroke="white"/>
+<path id="Vector_12" d="M165.956 142.769V139.566C165.956 132.092 172.361 128.889 180.901 128.889C189.443 128.889 195.848 132.092 195.848 139.566V142.769H165.956Z" stroke-width="2.13524" stroke-linejoin="round" stroke="white"/>
+</g>
+<g id="Group_3">
+<path id="Vector_13" d="M201.826 114.931C207.53 114.931 212.153 110.308 212.153 104.604C212.153 98.9002 207.53 94.2769 201.826 94.2769C196.123 94.2769 191.499 98.9002 191.499 104.604C191.499 110.308 196.123 114.931 201.826 114.931Z" fill="white" stroke-width="1.0327" stroke="#D1E5D8"/>
+<path id="Vector_14" d="M196.664 104.604L199.762 107.702L205.958 101.506" stroke-width="1.85886" stroke-linecap="round" stroke-linejoin="round" stroke="#22A358"/>
+</g>
+</g>
+</svg>
