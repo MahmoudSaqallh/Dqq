@@ -1,5 +1,5 @@
-import OrderProcessing from "../ui-commponets/Page/OrderProcessing/page";
+import Automation from "../ui-commponets/Page/Automation/page";
 
 export default function OrderProcessingPage() {
-  return <OrderProcessing />;
+  return <Automation />;
 }

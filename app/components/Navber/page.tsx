@@ -18,10 +18,23 @@ const FEATURE_LINKS: Record<string, string> = {
   stock: "/inventory",
   warehouseMerge: "/warehouse-merge",
   delivery: "/delivery",
+  transfer: "/inventory-transfer",
+  purchase: "/purchase-orders",
+  products: "/products",
+  inventoryCount: "/stocktaking",
+  permissions: "/permissions",
+  activityLog: "/activity-log",
+  integrations: "/integrations",
+  lateOrders: "/delayed-orders",
+  whatsapp: "/whatsapp-messages",
+  reports: "/reports",
 };
 const FEATURE_PATHS = Array.from(new Set(Object.values(FEATURE_LINKS)));
 // Pages whose hero runs under the (transparent-at-top) header
-const HERO_OVERLAY_ROUTES = ["/", "/order-preparation", "/traking", "/sites", "/printing", "/returns", "/warehouse-merge", "/delivery"];
+const HERO_OVERLAY_ROUTES = ["/", "/order-preparation", "/traking", "/sites", "/printing", "/returns", "/warehouse-merge", "/delivery", "/inventory", "/inventory-transfer", "/purchase-orders", "/products", "/stocktaking", "/order-processing", "/permissions", "/activity-log", "/integrations", "/delayed-orders", "/whatsapp-messages", "/reports"];
+
+// The page itself or one of its sub-pages, so "/inventory" doesn't also match "/inventory-transfer"
+const isOnPage = (pathname: string, page: string) => pathname === page || pathname.startsWith(`${page}/`);
 
 function MegaMenuLink({
   title,
@@ -36,7 +49,7 @@ function MegaMenuLink({
 }) {
   const pathname = usePathname();
   const linkHref = href ?? "#";
-  const isCurrent = Boolean(href) && pathname.startsWith(linkHref);
+  const isCurrent = Boolean(href) && isOnPage(pathname, linkHref);
   // Icons are painted through a CSS mask so they can recolor on hover / current
   const iconMask = `url(/mega/${iconId}.svg)`;
 
@@ -81,8 +94,7 @@ export default function Navber() {
     { key: "faq", label: nav.faq, href: sectionHref("#faq"), sectionId: "faq" },
   ] as const;
 
-  const isFeaturesActive =
-    pathname !== "/" && FEATURE_PATHS.some((featurePath) => pathname.startsWith(featurePath));
+  const isFeaturesActive = FEATURE_PATHS.some((featurePath) => isOnPage(pathname, featurePath));
 
   const clearCloseTimeout = () => {
     if (closeTimeoutRef.current) {
@@ -215,7 +227,7 @@ export default function Navber() {
             onBlurCapture={closeMegaWithDelay}
           >
             <button
-              className={`-mx-2 inline-flex items-center gap-1 border-0 bg-transparent px-2 py-0 text-base font-medium leading-none ${
+              className={`-mx-2 inline-flex items-center gap-2 border-0 bg-transparent px-2 py-0 text-lg font-bold leading-none ${
                 isFeaturesActive ? "text-[#24a259]" : "text-[#22303e] hover:text-[#24a259]"
               }`}
               type="button"
@@ -228,7 +240,7 @@ export default function Navber() {
                 });
               }}
             >
-              {nav.features}
+              <span className="nav-features-shine">{nav.features}</span>
               <span
                 className={`translate-y-[1px] text-[#6f7f77] transition-all duration-300 ${isMegaOpen ? "rotate-180 text-[#24a259]" : ""}`}
                 aria-hidden="true"
@@ -358,14 +370,14 @@ export default function Navber() {
               </a>
             ))}
             <button
-              className={`flex min-h-14 w-full items-center justify-between border-0 bg-white px-5 text-[1.06rem] font-medium ${
+              className={`flex min-h-14 w-full items-center justify-between border-0 bg-white px-5 text-lg font-bold ${
                 isFeaturesActive ? "text-[#24a259]" : "text-[#1f2e2a]"
               }`}
               type="button"
               onClick={() => setIsMobileFeaturesOpen((prev) => !prev)}
               aria-expanded={isMobileFeaturesOpen}
             >
-              {nav.features}
+              <span className="nav-features-shine">{nav.features}</span>
               <span aria-hidden="true">{isMobileFeaturesOpen ? "▴" : "▾"}</span>
             </button>
 

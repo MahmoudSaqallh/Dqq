@@ -2177,6 +2177,66 @@ a {
 }
 
 /* The page you're already on */
+/* Navbar "features" word: a light band sweeps across its letters; the word shrinks, grows, shakes while big, then shrinks again */
+.nav-features-shine {
+  /* The button's tight line height would cut the letters off the clipped background */
+  margin-block: -0.25em;
+  padding-block: 0.25em;
+  background-image: linear-gradient(90deg, currentColor 35%, #86e3ae 50%, currentColor 65%);
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:
+    navFeaturesShine 3.2s ease-in-out infinite alternate,
+    navFeaturesPulse 3s ease-in-out infinite;
+}
+
+@keyframes navFeaturesPulse {
+  0%,
+  100% {
+    scale: 0.92;
+    translate: 0;
+  }
+  35% {
+    scale: 1.1;
+    translate: 0;
+  }
+  42% {
+    translate: -2px;
+  }
+  49% {
+    translate: 2px;
+  }
+  56% {
+    translate: -2px;
+  }
+  63% {
+    translate: 2px;
+  }
+  70% {
+    scale: 1.1;
+    translate: 0;
+  }
+}
+
+@keyframes navFeaturesShine {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-features-shine {
+    background-image: none;
+    -webkit-text-fill-color: currentColor;
+    animation: none;
+  }
+}
+
 .mega-item--current {
   background-color: rgba(36, 162, 89, 0.08);
   color: #24a259;
@@ -3390,6 +3450,76 @@ html[data-loaded] .hero-icon--4 { animation: heroIcon4 4s linear 4.6s infinite b
 @media (prefers-reduced-motion: reduce) {
   .returns-hex-float,
   .returns-float-card {
+    animation: none;
+  }
+}
+
+/* Inventory page: status cards alternate between Figma's phases A and B (3s loop) */
+.inventory-status {
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.inventory-status--damaged {
+  animation-name: inventoryStatusDamaged;
+}
+
+.inventory-status--reserved {
+  animation-name: inventoryStatusReserved;
+}
+
+.inventory-status--shipped {
+  animation-name: inventoryStatusShipped;
+}
+
+.inventory-status--picked {
+  animation-name: inventoryStatusPicked;
+}
+
+.inventory-status-dash {
+  animation: inventoryStatusDash 1.4s linear infinite;
+}
+
+@keyframes inventoryStatusDamaged {
+  from {
+    transform: rotate(-1.5deg);
+  }
+
+  to {
+    transform: rotate(1.5deg);
+  }
+}
+
+@keyframes inventoryStatusReserved {
+  to {
+    transform: scale(1.03);
+    opacity: 0.85;
+  }
+}
+
+@keyframes inventoryStatusShipped {
+  to {
+    transform: translateX(-6px);
+  }
+}
+
+@keyframes inventoryStatusPicked {
+  to {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes inventoryStatusDash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inventory-status,
+  .inventory-status-dash {
     animation: none;
   }
 }

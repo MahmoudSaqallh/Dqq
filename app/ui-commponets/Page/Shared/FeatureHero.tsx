@@ -8,7 +8,7 @@ import AnmtionTow from "../Index/Hero/AnmtionTow";
 type FeatureHeroProps = {
   badge: string;
   badgeIcon: { src: string; width: number; height: number };
-  titleLineOne: string;
+  titleLineOne: ReactNode;
   /** Plain second title line, for titles without the brand word */
   titleLineTwo?: string;
   /** Second title line, after the animated brand word; without it the title has no brand line */

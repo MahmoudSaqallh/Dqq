@@ -1,252 +1,111 @@
 "use client";
 
-import {
-  Clock,
-  ClipboardCheck,
-  Package,
-  PackageCheck,
-  PackageX,
-  type LucideIcon,
-} from "lucide-react";
-import { useLayoutEffect, useRef, useState, type ComponentType } from "react";
+import Image from "next/image";
 import { useLanguage } from "../../../i18n/LanguageContext";
 
-type IconProps = { size?: number; strokeWidth?: number; className?: string };
+// Figma's "Inventory/Status Card (3s loops)": each status moves in its own way, see .inventory-status--*
+const STATUS_STYLES: Record<string, { icon: { src: string; width: number; height: number }; placement: string }> = {
+  shipped: { icon: { src: "/inventory/icon-shipped.svg", width: 35, height: 36 }, placement: "xl:col-start-1 xl:row-start-1" },
+  picked: { icon: { src: "/inventory/icon-picked.svg", width: 40, height: 40 }, placement: "xl:col-start-1 xl:row-start-2" },
+  damaged: { icon: { src: "/inventory/icon-damaged.svg", width: 33, height: 36 }, placement: "xl:col-start-5 xl:row-start-1" },
+  reserved: { icon: { src: "/inventory/icon-reserved.svg", width: 40, height: 40 }, placement: "xl:col-start-5 xl:row-start-2" },
+};
 
-function ReservedIcon({ size = 28, strokeWidth = 1.75, className }: IconProps) {
+// Percent positions are Figma's, in the 376px tall span of the two card rows
+const CONNECTOR_COLUMNS = [
+  {
+    column: "xl:col-start-2",
+    connectors: [
+      { src: "/inventory/connector-shipped.svg", height: 92, top: "22.87%", heightPercent: "24.47%" },
+      { src: "/inventory/connector-picked.svg", height: 91, top: "54.25%", heightPercent: "24.2%" },
+    ],
+  },
+  {
+    column: "xl:col-start-4",
+    connectors: [
+      { src: "/inventory/connector-damaged.svg", height: 92, top: "22.87%", heightPercent: "24.47%" },
+      { src: "/inventory/connector-reserved.svg", height: 91, top: "54.25%", heightPercent: "24.2%" },
+    ],
+  },
+];
+
+function CardText({ title, description }: { title: string; description: string }) {
   return (
-    <span className={`relative inline-flex ${className ?? ""}`}>
-      <Package size={size} strokeWidth={strokeWidth} aria-hidden />
-      <Clock
-        size={Math.round(size * 0.5)}
-        strokeWidth={2.5}
-        aria-hidden
-          className="absolute -right-1.5 -top-1.5 rounded-full bg-white"
-      />
-    </span>
+    <>
+      <h3 className="text-xl font-semibold leading-[1.7] text-[#414141]">{title}</h3>
+      <p className="text-base leading-[1.5] text-[#676767]">{description}</p>
+    </>
   );
 }
 
-const STATUS_ICONS: Record<string, LucideIcon | ComponentType<IconProps>> = {
-  available: Package,
-  shipped: PackageCheck,
-  damaged: PackageX,
-  picked: ClipboardCheck,
-  reserved: ReservedIcon,
-};
-
-type CornerPosition = "top-left" | "top-right" | "bottom-left" | "bottom-right";
-
-const CORNER_ORDER: CornerPosition[] = ["top-left", "top-right", "bottom-left", "bottom-right"];
-
-const LINE_GAP = 8;
-const BOTTOM_LINE_OFFSET = 22;
-
-const CORNER_POINTS: Record<
-  CornerPosition,
-  {
-    card: (rect: DOMRect) => { x: number; y: number };
-    center: (rect: DOMRect) => { x: number; y: number };
-  }
-> = {
-  "top-left": {
-    card: (rect) => ({ x: rect.right + LINE_GAP, y: rect.top + rect.height / 2 }),
-    center: (rect) => ({ x: rect.left - LINE_GAP, y: rect.top + rect.height / 2 }),
-  },
-  "top-right": {
-    card: (rect) => ({ x: rect.left - LINE_GAP, y: rect.top + rect.height / 2 }),
-    center: (rect) => ({ x: rect.right + LINE_GAP, y: rect.top + rect.height / 2 }),
-  },
-  "bottom-left": {
-    card: (rect) => ({ x: rect.right + LINE_GAP, y: rect.top + rect.height / 2 + BOTTOM_LINE_OFFSET }),
-    center: (rect) => ({ x: rect.left - LINE_GAP, y: rect.top + rect.height / 2 + BOTTOM_LINE_OFFSET }),
-  },
-  "bottom-right": {
-    card: (rect) => ({ x: rect.left - LINE_GAP, y: rect.top + rect.height / 2 + BOTTOM_LINE_OFFSET }),
-    center: (rect) => ({ x: rect.right + LINE_GAP, y: rect.top + rect.height / 2 + BOTTOM_LINE_OFFSET }),
-  },
-};
-
-type LineCoords = { id: CornerPosition; x1: number; y1: number; x2: number; y2: number };
-
-type StatusItem = { id: string; title: string; description: string };
-
 export default function StatusesSection() {
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
   const content = t.inventory.statuses;
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const centerRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<Record<CornerPosition, HTMLDivElement | null>>({
-    "top-left": null,
-    "top-right": null,
-    "bottom-left": null,
-    "bottom-right": null,
-  });
-
-  const [lines, setLines] = useState<LineCoords[]>([]);
-  const [svgSize, setSvgSize] = useState({ width: 0, height: 0 });
-
-  useLayoutEffect(() => {
-    const container = containerRef.current;
-    const center = centerRef.current;
-    if (!container || !center) return;
-
-    const updateLines = () => {
-      const containerRect = container.getBoundingClientRect();
-      setSvgSize({ width: containerRect.width, height: containerRect.height });
-
-      const centerRect = center.getBoundingClientRect();
-      const nextLines: LineCoords[] = [];
-
-      CORNER_ORDER.forEach((position) => {
-        const card = cardRefs.current[position];
-        if (!card) return;
-
-        const cardRect = card.getBoundingClientRect();
-        const points = CORNER_POINTS[position];
-        const from = points.card(cardRect);
-        const to = points.center(centerRect);
-
-        nextLines.push({
-          id: position,
-          x1: from.x - containerRect.left,
-          y1: from.y - containerRect.top,
-          x2: to.x - containerRect.left,
-          y2: to.y - containerRect.top,
-        });
-      });
-
-      setLines(nextLines);
-    };
-
-    updateLines();
-    const observer = new ResizeObserver(updateLines);
-    observer.observe(container);
-    window.addEventListener("resize", updateLines);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", updateLines);
-    };
-  }, []);
-
-  const renderCard = (position: CornerPosition, item: StatusItem) => {
-    const Icon = STATUS_ICONS[item.id] ?? Package;
-
-    return (
-      <div
-        key={item.id}
-        ref={(el) => {
-          cardRefs.current[position] = el;
-        }}
-        className="relative z-[1] flex w-full max-w-[280px] flex-col items-center gap-2 rounded-2xl bg-[#eef9f3] px-6 py-8 text-center"
-      >
-        <Icon size={28} strokeWidth={1.75} aria-hidden className="text-[#24a259]" />
-        <span className="font-madani-semibold text-[1.05rem] text-[#22303e]">{item.title}</span>
-        <span className="font-madani-regular text-[0.85rem] leading-6 text-[#5f7167]">
-          {item.description}
-        </span>
-      </div>
-    );
-  };
-
-  const CenterIcon = STATUS_ICONS[content.center.id] ?? Package;
-
   return (
-    <section id="inventory-features" className="bg-white py-14 md:py-20">
-      <div className="site-container">
-        <div className="mx-auto mb-12 max-w-2xl text-center md:mb-16">
-          <h2 className="font-madani-semibold text-[clamp(1.6rem,3.4vw,2.4rem)] leading-[1.4] text-[#22303e]">
-            {content.title}
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl font-madani-regular text-[clamp(0.9rem,1.6vw,1rem)] leading-7 text-[#5f7167]">
-            {content.subtitle}
-          </p>
-        </div>
+    <section id="inventory-features" className="scroll-mt-20 py-[clamp(48px,5.5vw,80px)]">
+      <div className="site-container flex flex-col gap-6">
+        <header className="text-center">
+          <h2 className="text-[clamp(22px,1.94vw,28px)] font-semibold leading-[1.4] text-[#414141]">{content.title}</h2>
+          <p className="mt-2 text-[clamp(13px,1.04vw,15px)] leading-[2] text-[#8d8d8d]">{content.subtitle}</p>
+        </header>
 
-        <div ref={containerRef} dir="ltr" className="relative mx-auto max-w-[1150px]">
-          <svg
-            aria-hidden
-            className="pointer-events-none absolute inset-0 hidden h-full w-full md:block"
-            width={svgSize.width}
-            height={svgSize.height}
+        {/* Physical positions, so the connectors' slopes stay correct in both languages */}
+        <div
+          dir="ltr"
+          className="grid gap-6 rounded-[22px] bg-[linear-gradient(159deg,#e4f2e9_0%,#fff_25%,#e9f6ee_50%,#fff_75%,#e4f2e9_100%)] px-5 py-8 md:grid-cols-2 xl:grid-cols-[282px_minmax(0,140px)_282px_minmax(0,140px)_282px] xl:grid-rows-[minmax(172px,auto)_minmax(172px,auto)] xl:justify-center xl:gap-x-0 xl:gap-y-8 xl:px-6 xl:py-12"
+        >
+          <div
+            dir={dir}
+            className="relative mx-auto flex min-h-[172px] w-full max-w-[282px] flex-col items-center gap-4 px-6 pt-6 pb-4 text-center md:col-span-2 xl:col-span-1 xl:col-start-3 xl:row-span-2 xl:row-start-1 xl:self-center"
           >
-            {lines.map((line) => (
-              <line
-                key={line.id}
-                x1={line.x1}
-                y1={line.y1}
-                x2={line.x2}
-                y2={line.y2}
-                stroke="#24a259"
-                strokeOpacity={0.4}
-                strokeWidth={1.5}
-                strokeDasharray="5 6"
-              >
-                <animate
-                  attributeName="stroke-dashoffset"
-                  values="0;-22"
-                  dur="1s"
-                  repeatCount="indefinite"
-                />
-              </line>
-            ))}
-            {lines.map((line) => (
-              <g key={`${line.id}-dots`}>
-                <circle cx={line.x1} cy={line.y1} r={3.5} fill="#24a259" fillOpacity={0.55} />
-                <circle cx={line.x2} cy={line.y2} r={3.5} fill="#24a259" fillOpacity={0.55} />
-              </g>
-            ))}
-          </svg>
-
-          <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-3 md:gap-28">
-            <div className="flex flex-col items-center gap-4 md:items-end">
-              {renderCard("top-left", content.items[0])}
-              {renderCard("bottom-left", content.items[2])}
-            </div>
-
-            <div
-              ref={centerRef}
-              className="relative z-[1] mx-auto flex w-full max-w-[280px] flex-col items-center gap-3 rounded-xl bg-white  py-7 text-center"
-            >
-              <svg aria-hidden className="pointer-events-none absolute inset-0 h-full w-full">
-                <rect
-                  x={1.5}
-                  y={1.5}
-                  width="calc(100% - 3px)"
-                  height="calc(100% - 3px)"
-                  rx={12}
-                  ry={12}
-                  fill="none"
-                  stroke="#24a259"
-                  strokeOpacity={0.6}
-                  strokeWidth={3}
-                  strokeLinecap="round"
-                  strokeDasharray="14 10"
-                >
-                  <animate
-                    attributeName="stroke-dashoffset"
-                    values="0;-24"
-                    dur="1.4s"
-                    repeatCount="indefinite"
-                  />
-                </rect>
-              </svg>
-              <CenterIcon size={28} strokeWidth={1.75} aria-hidden className="text-[#24a259]" />
-              <span className="font-madani-semibold text-[1.05rem] text-[#22303e]">
-                {content.center.title}
-              </span>
-              <span className="font-madani-regular text-[0.85rem] leading-6 text-[#5f7167]">
-                {content.center.description}
-              </span>
-            </div>
-
-            <div className="flex flex-col items-center gap-4 md:items-start">
-              {renderCard("top-right", content.items[1])}
-              {renderCard("bottom-right", content.items[3])}
-            </div>
+            <svg aria-hidden className="pointer-events-none absolute inset-0 size-full">
+              <rect
+                className="inventory-status-dash"
+                x="1.5"
+                y="1.5"
+                rx="30.5"
+                fill="none"
+                stroke="#7cc79b"
+                strokeWidth="3"
+                strokeDasharray="14 10"
+                style={{ width: "calc(100% - 3px)", height: "calc(100% - 3px)" }}
+              />
+            </svg>
+            <Image src="/inventory/icon-available.svg" alt="" width={34} height={34} unoptimized />
+            <CardText title={content.center.title} description={content.center.description} />
           </div>
+
+          {CONNECTOR_COLUMNS.map(({ column, connectors }) => (
+            <div key={column} aria-hidden className={`relative row-span-2 row-start-1 hidden xl:block ${column}`}>
+              {connectors.map((connector) => (
+                <Image
+                  key={connector.src}
+                  src={connector.src}
+                  alt=""
+                  width={130}
+                  height={connector.height}
+                  unoptimized
+                  className="absolute left-[5px] w-[calc(100%-10px)] max-w-none"
+                  style={{ top: connector.top, height: connector.heightPercent }}
+                />
+              ))}
+            </div>
+          ))}
+
+          {content.items.map((item) => {
+            const style = STATUS_STYLES[item.id];
+            return (
+              <div
+                key={item.id}
+                dir={dir}
+                className={`inventory-status inventory-status--${item.id} mx-auto flex min-h-[172px] w-full max-w-[282px] flex-col items-center gap-4 rounded-[26px] bg-[#e9f6ee] px-6 pt-6 pb-4 text-center ${style.placement}`}
+              >
+                <Image src={style.icon.src} alt="" width={style.icon.width} height={style.icon.height} unoptimized />
+                <CardText title={item.title} description={item.description} />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
